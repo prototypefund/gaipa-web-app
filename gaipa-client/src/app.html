@@ -1,0 +1,19 @@
+<template>
+  <require from="materialize-css/dist/css/materialize.css"></require>
+  <require from="./top-bar.html"></require>
+  <require from="./nav-bar.html"></require>
+  <require from="./styles.scss"></require>
+  <md-colors
+    md-primary-color.bind="primaryColor"
+    md-accent-color.bind="accentColor"
+    md-error-color="errorColor"></md-colors>
+  <header>
+    <top-bar router.bind="router"></top-bar>
+  </header>
+  <main class="page-host">
+    <router-view></router-view>
+  </main>
+  <footer>
+    <nav-bar router.bind="router"></nav-bar>
+  </footer>
+</template>
