@@ -1,7 +1,12 @@
 <template>
+  <require from="./resources/elements/farming-cycle-menu"></require>
   <section class="au-animate">
     <h2>${heading}</h2>
     <div class="row au-stagger">
-
+      <md-collection>
+        <md-collection-item repeat.for='cycleItem of farmingCycles'
+          class='accent-text'><a>${ cycleItem }</a></md-collection-item>
+      </md-collection>
     </div>
+  </section>
 </template>
