@@ -1,17 +1,48 @@
 export class Overview {
   heading = 'Home';
   farmingCycles = [
-    'Planning',
-    'Preparing',
-    'Seeds',
-    'Planting',
-    'Growing',
-    'Harvesting',
-    'Transporting',
-    'Processing',
-    'Storing',
-    'Selling'
+    {
+      slug: 'planning',
+      title: 'Planning'
+    },
+    {
+      slug: 'preparing',
+      title: 'Preparing'
+    },
+    {
+      slug: 'seeds',
+      title: 'Seeds'
+    },
+    {
+      slug: 'planting',
+      title: 'Planting'
+    },
+    {
+      slug: 'growing',
+      title: 'Growing'
+    },
+    {
+      slug: 'harvesting',
+      title: 'Harvesting'
+    },
+    {
+      slug: 'transporting',
+      title: 'Transporting'
+    },
+    {
+      slug: 'processing',
+      title: 'Processing'
+    },
+    {
+      slug: 'storing',
+      title: 'Storing'
+    },
+    {
+      slug: 'selling',
+      title: 'Selling'
+    }
   ];
+
   constructor() {
   }
 }

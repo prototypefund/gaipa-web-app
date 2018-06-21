@@ -8,7 +8,9 @@ export class App {
   configureRouter(config, router) {
     config.title = 'gaipa';
     config.map([
-      { route: ['', 'home'], name: 'overview',      moduleId: PLATFORM.moduleName('./home'),      nav: true, title: 'Home' },
+      { route: '', name: 'overview', moduleId: PLATFORM.moduleName('./home'),      nav: true, title: 'Home' },
+      { route: 'home', redirect: ''},
+      { route: 'card/*path',  name: 'card', moduleId: PLATFORM.moduleName('./nav-assistant-card'), nav: false, title: 'Nav assistant card' },
       { route: 'settings',  name: 'settings', moduleId: PLATFORM.moduleName('./settings'), nav: true, title: 'Settings' },
       { route: 'search',  name: 'search', moduleId: PLATFORM.moduleName('./search'), nav: false, title: 'Search' }
     ]);
