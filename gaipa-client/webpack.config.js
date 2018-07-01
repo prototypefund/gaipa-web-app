@@ -43,6 +43,8 @@ module.exports = ({production, server, extractCss, coverage, analyze} = {}) => (
   performance: { hints: false },
   devServer: {
     contentBase: outDir,
+    port: 4300,
+    allowedHosts: ['app.gaipa.lan'],
     // serve index.html for all 404 (required for push-state)
     historyApiFallback: true
   },

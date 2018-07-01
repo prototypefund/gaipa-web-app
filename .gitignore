@@ -1,2 +1,4 @@
 /gaipa-client/.vscode
 dist
+/gaipa.backend/
+/gaipa-client/test/coverage-karma/*
