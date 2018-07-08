@@ -57,6 +57,26 @@ export class ContentApi {
         console.log('Error reading solution data!');
       });
   }
+
+  getSolutionServices(category) {
+    let basePath = '/@search?portal_type=Solution%20Service&sort_on=sortable_title';
+    let servicesPath = basePath;
+    if (category) {
+      servicesPath = servicesPath + '&solution_category=' + category;
+    }
+    return this.http.fetch(servicesPath)
+      .then(response => response.json())
+      .then(services => {
+        return services.items;
+      })
+      //.then(services => new Promise(function(resolve, reject) {
+      //  setTimeout(() => {
+      //    resolve(services);
+      //  }, 3000);
+      //}))
+      .catch(error => {
+        console.log('Error reading solution service data!');
+      })
       ;
   }
 }

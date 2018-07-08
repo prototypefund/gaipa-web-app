@@ -8,6 +8,7 @@ export class SolutionArticle {
   constructor(gaipaContentApi) {
     this.contentApi = gaipaContentApi;
     this.solution = {};
+    this.services = [];
   }
 
   activate(params) {
@@ -37,4 +38,9 @@ export class SolutionArticle {
     );
   }
 
+  getSolutionServices(category) {
+    this.contentApi.getSolutionServices(category).then(
+      services => this.services = services
+    );
+  }
 }
