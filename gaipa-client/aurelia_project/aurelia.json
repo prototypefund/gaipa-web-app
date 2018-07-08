@@ -9,6 +9,8 @@
     "options": {
       "server": "dev",
       "extractCss": "prod",
+      "progress": true,
+      "color": true,
       "coverage": false
     }
   },

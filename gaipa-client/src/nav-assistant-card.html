@@ -1,32 +1,32 @@
 <template>
+  <div class='container'>
 
-  <h1>${card.title}</h1>
-  <span>${card.description}</span>
-  <span innerhtml.bind="card.text.data | sanitizeHTML">${card.text.data}</span>
-  <span>path: ${path}</span>
+    <h1>${card.title}</h1>
+    <span>${card.description}</span>
+    <span innerhtml.bind="card.text.data | sanitizeHTML">${card.text.data}</span>
 
-  <div class="row">
-    <template repeat.for='child of card.items'>
-    <md-card class="col s4"
-      md-title.bind="child.title"
-      action="true"
-      click.delegate="navigateToCard(child)">
-      <div>${ child.description }</div>
-    </md-card>
-    </template>
-  </div>
+    <div class="row">
+      <template repeat.for='child of card.items'>
+      <md-card class="col s6 m4 l3"
+        md-title.bind="child.title"
+        action="true"
+        click.delegate="navigateToCard(child)">
+        <div>${ child.description }</div>
+      </md-card>
+      </template>
+    </div>
 
-  <div class="row">
-    <h1 if.bind='card.solutions.length'>Solutions</h1>
-    <template repeat.for='solution of card.solutions'>
-    <md-card class="col s4"
-      md-title.bind="solution.title"
-      action="true"
-      click.delegate="getSolution(solution)">
-      <div>${ solution.description }</div>
-    </md-card>
-    </template>
-  </div>
+    <div class="row">
+      <h1 if.bind='card.solutions.length'>Solutions</h1>
+      <template repeat.for='solution of card.solutions'>
+      <md-card class="col s6 m4 l3"
+        md-title.bind="solution.title"
+        action="true"
+        click.delegate="getSolution(solution)">
+        <div>${ solution.description }</div>
+      </md-card>
+      </template>
+    </div>
 
 
  <!--
@@ -35,5 +35,6 @@
       class='accent-text'><a href="">${ child.title }</a></md-collection-item>
   </md-collection>
 -->
+  </div>
 
 </template>

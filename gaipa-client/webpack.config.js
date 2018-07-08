@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const project = require('./aurelia_project/aurelia.json');
 const { AureliaPlugin, ModuleDependenciesPlugin } = require('aurelia-webpack-plugin');
-const { ProvidePlugin } = require('webpack');
+const { ProvidePlugin, DefinePlugin } = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 // config helpers:
@@ -14,7 +14,7 @@ const when = (condition, config, negativeConfig) =>
 
 // primary config:
 const title = 'Aurelia Navigation Skeleton';
-const outDir = path.resolve(__dirname, project.platform.output);
+const outDir = path.resolve(__dirname, 'dist/public');
 const srcDir = path.resolve(__dirname, 'src');
 const nodeModulesDir = path.resolve(__dirname, 'node_modules');
 const baseUrl = '/';
@@ -111,6 +111,9 @@ module.exports = ({production, server, extractCss, coverage, analyze} = {}) => (
         // available in index.ejs //
         title, server, baseUrl
       }
+    }),
+    new DefinePlugin({
+      __GAIPA_API__: production ? "'https://gaipa.org/app'" : "'http://localhost:7080/Plone/app'"
     }),
     ...when(extractCss, new ExtractTextPlugin({
       filename: production ? '[contenthash].css' : '[id].css',
