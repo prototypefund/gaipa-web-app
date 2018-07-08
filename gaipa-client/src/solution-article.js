@@ -7,7 +7,7 @@ import {ContentApi} from './api';
 export class SolutionArticle {
   constructor(gaipaContentApi) {
     this.contentApi = gaipaContentApi;
-    this.data = {};
+    this.solution = {};
   }
 
   activate(params) {
@@ -15,15 +15,26 @@ export class SolutionArticle {
   }
 
   bind() {
-    let path = this.solutionId;
-    this.getSolutionData(this.solutionId);
+    this.getSolutionData('/solution/' + this.solutionId);
+  }
+
+  attached() {
+    this.getSolutionServices(this.solution.solution_category);
+  }
+
+  navigateToSolution(child) {
+    let path = child['@id'];
+    path = path.substring(
+      path.indexOf(this.router.currentInstruction.fragment)
+    );
+    //this.router.navigate(path)
+    this.router.navigateToRoute('card', {path: path});
   }
 
   getSolutionData(path) {
     this.contentApi.getSolution(path).then(
-      solution => this.data = solution
+      solution => this.solution = solution
     );
-
   }
 
 }

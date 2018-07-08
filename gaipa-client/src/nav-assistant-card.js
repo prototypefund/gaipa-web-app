@@ -1,38 +1,53 @@
 import { bindable, inject } from "aurelia-framework";
 import {activationStrategy} from 'aurelia-router';
+import {Router} from 'aurelia-router';
 import {ContentApi} from './api';
 
 
-@inject(ContentApi)
+@inject(ContentApi, Router)
 export class NavAssistantCard {
-  constructor(gaipaContentApi) {
+  constructor(gaipaContentApi, router) {
     this.contentApi = gaipaContentApi;
-    this.data = {};
+    this.router = router;
+    this.card = null;
+    this.path = '';
   }
 
   activate(params) {
     this.path = params.path;
-    this.parentUrl = params.parentUrl;
   }
 
   bind() {
-    let cardPath;
-    debugger;
-    if ( !this.path.startsWith('http') ) {
-      // create first level path
-      cardPath = '/cards/' + this.path;
-    } else {
-      path = this.path.substring(this.path.indexOf(this.parentUrl))
-      cardPath = '/cards/' + path;
+    if (this.card === null) {
+      console.log("card is null, load card data in bind()");
+      this.getCard(this.path);
     }
-    this.getCardData(cardPath);
   }
 
-  getCardData(path) {
-    this.contentApi.getCard(path).then(
-      card => this.data = card
+  navigateToCard(child) {
+    let path = child['@id'];
+    path = path.substring(
+      path.indexOf(this.router.currentInstruction.fragment)
     );
+    //this.router.navigate(path)
+    this.router.navigateToRoute('card', {path: path});
+  }
 
+  getCard(child) {
+    let path = this.path;
+    this.contentApi.getCard('/card/' + path).then(
+      card => this.card = card
+    );
+  }
+
+  getSolution(solution) {
+    let path = solution['@id'];
+    this.contentApi.getSolution(path).then(
+      solution => this.solution = solution
+    );
+    //this.router.navigate(path)
+    let id = solution['@id'].split('/').slice(-1)[0]
+    this.router.navigateToRoute('solution', {id: id});
   }
 
   determineActivationStrategy() {

@@ -6,18 +6,12 @@
     "configurations": [
 
         {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}/gaipa-client/src/api.js"
-        },
-        {
             "name": "Launch aurelia app in Firefox",
             "type": "firefox",
             "request": "launch",
             "reAttach": true,
             "url": "http://app.gaipa.lan",
-            "webRoot": "${workspaceFolder}/web-app/gaipa-client/src"
+            "webRoot": "${workspaceFolder}/gaipa-client"
         },
         {
             "name": "Launch aurelia app in Chrome",
@@ -25,7 +19,7 @@
             "request": "launch",
             "reAttach": true,
             "url": "http://app.gaipa.lan",
-            "webRoot": "${workspaceFolder}/web-app/gaipa-client/src"
+            "webRoot": "${workspaceFolder}/gaipa-client"
         }
     ]
 }

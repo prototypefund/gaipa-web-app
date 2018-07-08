@@ -22,12 +22,6 @@ export class ContentApi {
         })
         .withInterceptor({
           request(request) {
-            let backendUrlPrefix = 'http://gaipa.lan/app';
-            let clientUrlPrefix = 'http://app.gaipa.lan';
-            if ( request.url.startsWith(backendUrlPrefix) ) {
-              request.url = request.url.replace(
-                backendUrlPrefix, clientUrlPrefix);
-            }
             console.log(`Requesting ${request.method} ${request.url}`);
             return request;
           },
@@ -60,8 +54,9 @@ export class ContentApi {
         return solution;
       })
       .catch(error => {
-        console.log('Error reading solution article data!');
+        console.log('Error reading solution data!');
       });
+  }
       ;
   }
 }

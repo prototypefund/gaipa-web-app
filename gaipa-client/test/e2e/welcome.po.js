@@ -1,5 +1,5 @@
 export class PageObjectWelcome {
   getGreeting() {
-    return element(by.tagName('h1')).getText();
+    return element(by.tagName('h2')).getText();
   }
 }

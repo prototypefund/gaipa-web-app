@@ -2,3 +2,4 @@
 dist
 /gaipa.backend/
 /gaipa-client/test/coverage-karma/*
+/.vscode/tags
