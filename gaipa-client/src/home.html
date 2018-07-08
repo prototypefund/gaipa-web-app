@@ -7,5 +7,18 @@
           class='accent-text'><a route-href="route: card; params.bind: {path: cycleItem.slug}">${ cycleItem.title }</a></md-collection-item>
       </md-collection>
     </div>
+
+    <div class="row">
+      <template repeat.for='cycleItem of farmingCycles'>
+      <a route-href="route: card; params.bind: {path: cycleItem.slug}">
+      <md-card class="col s4"
+        md-title.bind="cycleItem.title"
+        action="true"
+        >
+        <div>Some description, maybe?</div>
+      </md-card>
+      </a>
+      </template>
+    </div>
   </section>
 </template>
