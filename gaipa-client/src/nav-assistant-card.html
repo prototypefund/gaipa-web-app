@@ -1,5 +1,5 @@
 <template>
-  <div class='container'>
+  <section class="au-animate container">
 
     <h1>${card.title}</h1>
     <span>${card.description}</span>
@@ -22,7 +22,7 @@
       <md-card class="col s6 m4 l3"
         md-title.bind="solution.title"
         action="true"
-        click.delegate="getSolution(solution)">
+        click.delegate="navigateToSolution(solution)">
         <div>${ solution.description }</div>
       </md-card>
       </template>
@@ -35,6 +35,6 @@
       class='accent-text'><a href="">${ child.title }</a></md-collection-item>
   </md-collection>
 -->
-  </div>
+</section>
 
 </template>

@@ -7,6 +7,8 @@ export class App {
 
   configureRouter(config, router) {
     config.title = 'gaipa';
+    config.options.pushState = true;
+    config.options.root = '/';
     config.map([
       { route: '', name: 'overview', moduleId: PLATFORM.moduleName('./home'),      nav: true, title: 'Home' },
       { route: 'home', redirect: ''},

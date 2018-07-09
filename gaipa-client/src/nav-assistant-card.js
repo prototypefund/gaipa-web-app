@@ -15,13 +15,14 @@ export class NavAssistantCard {
 
   activate(params) {
     this.path = params.path;
+    if (!this.path.startsWith('/')) {
+      this.path = '/' + this.path;
+    }
+    console.log(this.path);
   }
 
   bind() {
-    if (this.card === null) {
-      console.log("card is null, load card data in bind()");
-      this.getCard(this.path);
-    }
+    this.getCard(this.path);
   }
 
   navigateToCard(child) {
@@ -30,21 +31,18 @@ export class NavAssistantCard {
       path.indexOf(this.router.currentInstruction.fragment)
     );
     //this.router.navigate(path)
+    path = path.replace('/card/', '');
     this.router.navigateToRoute('card', {path: path});
   }
 
   getCard(child) {
     let path = this.path;
-    this.contentApi.getCard('/card/' + path).then(
+    this.contentApi.getCard('/card' + path).then(
       card => this.card = card
     );
   }
 
-  getSolution(solution) {
-    let path = solution['@id'];
-    this.contentApi.getSolution(path).then(
-      solution => this.solution = solution
-    );
+  navigateToSolution(solution) {
     //this.router.navigate(path)
     let id = solution['@id'].split('/').slice(-1)[0]
     this.router.navigateToRoute('solution', {id: id});

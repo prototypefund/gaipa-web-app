@@ -1,5 +1,5 @@
 export class Overview {
-  heading = 'Home';
+  heading = 'Farming Cycle';
   farmingCycles = [
     {
       slug: 'planning',

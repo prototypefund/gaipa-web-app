@@ -1,17 +1,18 @@
 <template>
-  <h1>${solution.title}</h1>
-  <span>${solution.description}</span>
-  <span innerhtml.bind="solution.text.data | sanitizeHTML">${solution.text.data}</span>
+  <section class="au-animate container">
+    <h1>${solution.title}</h1>
+    <span>${solution.description}</span>
+    <span innerhtml.bind="solution.text.data | sanitizeHTML">${solution.text.data}</span>
 
-  <div class="row">
-    <h1 if.bind='services.length'>Services</h1>
-    <template repeat.for='service of services'>
-    <md-card class="col s6 m4 l3"
-      md-title.bind="service.title"
-      action="true">
-      <div>${ service.description }</div>
-    </md-card>
-    </template>
-  </div>
-
+    <div class="row">
+      <h1 if.bind='services.length'>Services</h1>
+      <template repeat.for='service of services'>
+      <md-card class="col s6 m4 l3"
+        md-title.bind="service.title"
+        action="true">
+        <div>${ service.description }</div>
+      </md-card>
+      </template>
+    </div>
+  </section>
 </template>
