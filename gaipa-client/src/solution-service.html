@@ -1,0 +1,12 @@
+<template>
+  <dl>
+    <dt>Category</dt>
+    <dd>${service.solution_category}</dd>
+  </dl>
+  <article>
+    <h1>${service.title}</h1>
+    <span>${service.description}</span>
+    <span innerhtml.bind="service.text.data | sanitizeHTML">${service.text.data}</span>
+    <a href.bind="service.url" target="_blank" title.bind="service.title">>> open external service website</a>
+  </article>
+</template>

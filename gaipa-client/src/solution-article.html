@@ -1,5 +1,4 @@
 <template>
-  <section class="au-animate container">
     <h1>${solution.title}</h1>
     <span>${solution.description}</span>
     <span innerhtml.bind="solution.text.data | sanitizeHTML">${solution.text.data}</span>
@@ -9,10 +8,10 @@
       <template repeat.for='service of services'>
       <md-card class="col s6 m4 l3"
         md-title.bind="service.title"
-        action="true">
+        action="true"
+        click.delegate="navigateToService(service)">
         <div>${ service.description }</div>
       </md-card>
       </template>
     </div>
-  </section>
 </template>

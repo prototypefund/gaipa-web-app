@@ -80,4 +80,17 @@ export class ContentApi {
       })
       ;
   }
+
+  getService(path) {
+    return this.http.fetch(path)
+      .then(response => response.json())
+      .then(service => {
+        return service;
+      })
+      .catch(error => {
+        console.log('Error reading service data!');
+      })
+      ;
+  }
+
 }
