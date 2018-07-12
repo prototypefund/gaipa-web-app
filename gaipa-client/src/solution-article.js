@@ -21,22 +21,21 @@ export class SolutionArticle {
     this.getSolutionData('/solution/' + this.solutionId);
   }
 
-  attached() {
-    this.getSolutionServices(this.solution.solution_category);
-  }
-
   navigateToService(child) {
     let path = child['@id'];
     path = path.replace(this.baseUrl, '');
-    let parts = path.split('/')
-    let id = parts[parts.length-1]
+    let parts = path.split('/');
+    let id = parts[parts.length - 1];
     //this.router.navigate(path)
     this.router.navigateToRoute('service', {id: id});
   }
 
   getSolutionData(path) {
     this.contentApi.getSolution(path).then(
-      solution => this.solution = solution
+      solution => {
+        this.solution = solution;
+        this.getSolutionServices(solution.solution_category.token);
+      }
     );
   }
 

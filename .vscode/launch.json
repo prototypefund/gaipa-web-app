@@ -10,7 +10,7 @@
             "type": "firefox",
             "request": "launch",
             "reAttach": true,
-            "url": "http://app.gaipa.lan",
+            "url": "http://localhost:4300",
             "webRoot": "${workspaceFolder}/gaipa-client"
         },
         {
@@ -18,7 +18,7 @@
             "type": "chrome",
             "request": "launch",
             "reAttach": true,
-            "url": "http://app.gaipa.lan",
+            "url": "http://localhost:4300",
             "webRoot": "${workspaceFolder}/gaipa-client"
         }
     ]

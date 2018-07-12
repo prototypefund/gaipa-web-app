@@ -1,4 +1,8 @@
 <template>
+  <dl>
+    <dt>Category</dt>
+    <dd>${solution.solution_category.title}</dd>
+  </dl>
     <h1>${solution.title}</h1>
     <span>${solution.description}</span>
     <span innerhtml.bind="solution.text.data | sanitizeHTML">${solution.text.data}</span>
