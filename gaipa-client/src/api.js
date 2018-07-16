@@ -70,11 +70,11 @@ export class ContentApi {
       .then(services => {
         return services.items;
       })
-      .then(services => new Promise(function(resolve, reject) {
-        setTimeout(() => {
-          resolve(services);
-        }, 1500);
-      }))
+      //.then(services => new Promise(function(resolve, reject) {
+      //  setTimeout(() => {
+      //    resolve(services);
+      //  }, 1500);
+      //}))
       .catch(error => {
         console.log('Error reading solution service data!');
       })
