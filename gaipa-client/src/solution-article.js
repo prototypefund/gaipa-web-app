@@ -14,20 +14,18 @@ export class SolutionArticle {
   }
 
   activate(params) {
-    this.solutionId = params.id;
+    this.solutionPath = params.path;
   }
 
   bind() {
-    this.getSolutionData('/solution/' + this.solutionId);
+    this.getSolutionData('/solution/' + this.solutionPath);
   }
 
   navigateToService(child) {
     let path = child['@id'];
     path = path.replace(this.baseUrl, '');
-    let parts = path.split('/');
-    let id = parts[parts.length - 1];
-    //this.router.navigate(path)
-    this.router.navigateToRoute('service', {id: id});
+    this.router.navigate(path)
+    //this.router.navigateToRoute('service', {path: path});
   }
 
   getSolutionData(path) {
@@ -43,5 +41,9 @@ export class SolutionArticle {
     this.contentApi.getSolutionServices(category).then(
       services => this.services = services
     );
+  }
+
+  determineActivationStrategy() {
+    return activationStrategy.replace;
   }
 }

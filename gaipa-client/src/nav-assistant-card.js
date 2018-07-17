@@ -8,8 +8,9 @@ import {ContentApi} from './api';
 export class NavAssistantCard {
   constructor(gaipaContentApi, router) {
     this.contentApi = gaipaContentApi;
+    this.baseUrl = __GAIPA_API__;
     this.router = router;
-    this.card = null;
+    this.pathrd = null;
     this.path = '';
   }
 
@@ -27,12 +28,9 @@ export class NavAssistantCard {
 
   navigateToCard(child) {
     let path = child['@id'];
-    path = path.substring(
-      path.indexOf(this.router.currentInstruction.fragment)
-    );
-    //this.router.navigate(path)
-    path = path.replace('/card/', '');
-    this.router.navigateToRoute('card', {path: path});
+    path = path.replace(this.baseUrl, '');
+    this.router.navigate(path)
+    //this.router.navigateToRoute('card', {path: path});
   }
 
   getCard(child) {
@@ -43,9 +41,10 @@ export class NavAssistantCard {
   }
 
   navigateToSolution(solution) {
-    //this.router.navigate(path)
-    let id = solution['@id'].split('/').slice(-1)[0]
-    this.router.navigateToRoute('solution', {id: id});
+    let path = solution['@id']
+    path = path.replace(this.baseUrl, '');
+    this.router.navigate(path)
+    //this.router.navigateToRoute('solution', {id: id});
   }
 
   determineActivationStrategy() {

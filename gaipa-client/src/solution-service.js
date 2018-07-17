@@ -6,23 +6,17 @@ import {ContentApi} from './api';
 export class SolutionService {
   constructor(gaipaContentApi) {
     this.contentApi = gaipaContentApi;
+    this.baseUrl = __GAIPA_API__;
   }
 
   activate(params) {
-    this.serviceId = params.id;
+    this.providerId = params.providerId;
+    this.serviceId = params.serviceId;
   }
 
   bind() {
-    this.getServiceData('/service/' + this.serviceId);
-  }
-
-  navigateToService(child) {
-    let path = child['@id'];
-    path = path.substring(
-      path.indexOf(this.router.currentInstruction.fragment)
-    );
-    //this.router.navigate(path)
-    this.router.navigateToRoute('card', {path: path});
+    let path = '/provider/' + this.providerId + '/service/' + this.serviceId;
+    this.getServiceData(path);
   }
 
   getServiceData(path) {
