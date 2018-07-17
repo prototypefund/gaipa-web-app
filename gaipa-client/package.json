@@ -86,7 +86,8 @@
   },
   "scripts": {
     "start": "nps",
-    "test": "nps test"
+    "test": "nps test",
+    "deploy": "au build --env prod && cd dist && git add . && git commit -m \"deploy $(date)\" && git push && cd -"
   },
   "main": "dist/app.bundle.js"
 }

@@ -1,7 +1,7 @@
 import {PLATFORM} from 'aurelia-pal';
 
 export class App {
-  primaryColor = '#9b924c';
+  primaryColor = '#09943d';
   accentColor = '#f7a500';
   errorColor = '#FF0000';
 
