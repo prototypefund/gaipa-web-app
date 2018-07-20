@@ -20,9 +20,13 @@ export class SolutionService {
   }
 
   getServiceData(path) {
-    this.contentApi.getService(path).then(
-      service => this.service = service
-    );
+    this.contentApi.getService(path)
+      .then(
+        service => this.service = service
+      )
+      .catch(error => {
+        this.error = error.message;
+      });
   }
 
 }

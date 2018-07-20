@@ -23,3 +23,13 @@ export class App {
     this.router = router;
   }
 }
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/custom-sw-name.js').then(registration => {
+      console.log('SW registered: ', registration);
+    }).catch(error => {
+      console.log('SW registration failed: ', error);
+    });
+  });
+}

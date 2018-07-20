@@ -42,9 +42,6 @@ export class ContentApi {
       .then(card => {
         return card;
       })
-      .catch(error => {
-        console.log('Error reading Nav Assistant Card!');
-      });
       ;
   }
 
@@ -53,9 +50,6 @@ export class ContentApi {
       .then(response => response.json())
       .then(solution => {
         return solution;
-      })
-      .catch(error => {
-        console.log('Error reading solution data!');
       });
   }
 
@@ -75,9 +69,6 @@ export class ContentApi {
       //    resolve(services);
       //  }, 1500);
       //}))
-      .catch(error => {
-        console.log('Error reading solution service data!');
-      })
       ;
   }
 

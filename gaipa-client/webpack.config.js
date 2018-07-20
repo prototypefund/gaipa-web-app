@@ -6,6 +6,7 @@ const project = require('./aurelia_project/aurelia.json');
 const { AureliaPlugin, ModuleDependenciesPlugin } = require('aurelia-webpack-plugin');
 const { ProvidePlugin, DefinePlugin } = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 // config helpers:
 const ensureArray = (config) => config && (Array.isArray(config) ? config : [config]) || [];
@@ -13,7 +14,7 @@ const when = (condition, config, negativeConfig) =>
   condition ? ensureArray(config) : ensureArray(negativeConfig);
 
 // primary config:
-const title = 'Aurelia Navigation Skeleton';
+const title = 'gaipa PWA';
 const outDir = path.resolve(__dirname, 'dist/public');
 const srcDir = path.resolve(__dirname, 'src');
 const nodeModulesDir = path.resolve(__dirname, 'node_modules');
@@ -111,6 +112,22 @@ module.exports = ({production, server, extractCss, coverage, analyze} = {}) => (
         // available in index.ejs //
         title, server, baseUrl
       }
+    }),
+    //new WorkboxPlugin.GenerateSW({
+    //  swDest: outDir + '/sw.js',
+    //  importWorkboxFrom: 'local',
+    //  importScripts: [
+    //    '/sw-custom.js'
+    //  ],
+    //  // these options encourage the ServiceWorkers to get in there fast
+    //  // and not allow any straggling "old" SWs to hang around
+    //  clientsClaim: true,
+    //  skipWaiting: true
+    //}),
+    new WorkboxPlugin.InjectManifest({
+      swSrc: srcDir + '/sw.js',
+      swDest: 'custom-sw-name.js',
+      importWorkboxFrom: 'local'
     }),
     new DefinePlugin({
       __GAIPA_API__: production ? "'https://gaipa.org/app'" : "'http://localhost:7080/Plone/app'"

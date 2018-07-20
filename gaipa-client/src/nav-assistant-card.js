@@ -34,10 +34,15 @@ export class NavAssistantCard {
   }
 
   getCard(child) {
+    let error = '';
     let path = this.path;
-    this.contentApi.getCard('/card' + path).then(
-      card => this.card = card
-    );
+    this.contentApi.getCard('/card' + path)
+      .then(
+        card => this.card = card
+      )
+      .catch(error => {
+        this.error = error.message;
+      });
   }
 
   navigateToSolution(solution) {

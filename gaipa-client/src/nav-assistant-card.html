@@ -1,4 +1,5 @@
 <template>
+    <div class="error" if.bind='error'>${ error }</div>
     <h1>${card.title}</h1>
     <span>${card.description}</span>
     <span innerhtml.bind="card.text.data | sanitizeHTML">${card.text.data}</span>

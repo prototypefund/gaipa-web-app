@@ -29,12 +29,16 @@ export class SolutionArticle {
   }
 
   getSolutionData(path) {
-    this.contentApi.getSolution(path).then(
-      solution => {
-        this.solution = solution;
-        this.getSolutionServices(solution.solution_category.token);
-      }
-    );
+    this.contentApi.getSolution(path)
+      .then(
+        solution => {
+          this.solution = solution;
+          this.getSolutionServices(solution.solution_category.token);
+        }
+      )
+      .catch(error => {
+        this.error = error.message;
+      });
   }
 
   getSolutionServices(category) {
