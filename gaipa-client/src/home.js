@@ -4,61 +4,61 @@ export class Overview {
     {
       slug: 'planning',
       title: 'Planning',
-      image: 'images/planning.png',
+      image: '../static/planning.png',
       notifications: '1'
     },
     {
       slug: 'preparing',
       title: 'Preparing',
-      image: 'images/preparing.png',
+      image: '../static/preparing.png',
       notifications: ''
     },
     {
       slug: 'seeds',
       title: 'Seeds',
-      image: 'images/seeds.png',
+      image: '../static/seeds.png',
       notifications: '4'
     },
     {
       slug: 'planting',
       title: 'Planting',
-      image: 'images/planting.png',
+      image: '../static/planting.png',
       notifications: '4'
     },
     {
       slug: 'growing',
       title: 'Growing',
-      image: 'images/growing.png',
+      image: '../static/growing.png',
       notifications: ''
     },
     {
       slug: 'harvesting',
       title: 'Harvesting',
-      image: 'images/harvesting.png',
+      image: '../static/harvesting.png',
       notifications: '2'
     },
     {
       slug: 'transporting',
       title: 'Transporting',
-      image: 'images/transporting.png',
+      image: '../static/transporting.png',
       notifications: '9'
     },
     {
       slug: 'processing',
       title: 'Processing',
-      image: 'images/mill.png',
+      image: '../static/mill.png',
       notifications: '2'
     },
     {
       slug: 'storing',
       title: 'Storing',
-      image: 'images/storage.png',
+      image: '../static/storage.png',
       notifications: '1'
     },
     {
       slug: 'selling',
       title: 'Selling',
-      image: 'images/market.png',
+      image: '../static/market.png',
       notifications: '2'
     }
   ];

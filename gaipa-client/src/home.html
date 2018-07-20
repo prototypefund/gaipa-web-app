@@ -6,119 +6,27 @@
 
       <!--  Circle centered elements-->
       <div class=circle-menu>
-        <img class=home-background src="images/circle.png" />
-        <img class=farmer-1 src="images/man.png" />
-        <img class=farmer-2 src="images/woman.png" />
+        <img class=home-background src="../static/circle.png" />
+        <img class=farmer-1 src="../static/man.png" />
+        <img class=farmer-2 src="../static/woman.png" />
       </div>
 
       <!--  Circle buttons-->
       <div class=circle-menu>
         <ul class='circle-container'>
 
-          <li>
+          <li repeat.for='cycleItem of farmingCycles'>
             <div class=circle-element>
-              <a href="/card/planning">
+              <a route-href="route: card; params.bind: {path: cycleItem.slug}">
                 <div class=circle-color></div>
-                <img class=img-element  src="images/planning.png" />
-                <div class=circle-title >Planning</div>
+                <img class=img-element  src.bind="cycleItem.image" />
+                <div class=circle-title >${ cycleItem.title }</div>
               </a>
             </div>
           </li>
-
-          <li>
-            <div class=circle-element>
-              <a href="/card/preparing">
-                <div class=circle-color></div>
-                <img class=img-element  src="images/preparing.png" />
-                <div class=circle-title >Preparing</div>
-              </a>
-            </div>
-          </li>
-
-          <li>
-            <div class=circle-element>
-              <a href="/card/seeds">
-                <div class=circle-color></div>
-                <img class=img-element  src="images/seeds.png" />
-                <div class=circle-title >Seeds</div>
-              </a>
-            </div>
-          </li>
-
-          <li>
-            <div class=circle-element>
-              <a href="/card/plating">
-                <div class=circle-color></div>
-                <img class=img-element  src="images/planting.png" />
-                <div class=circle-title >Planting</div>
-              </a>
-            </div>
-          </li>
-
-          <li>
-            <div class=circle-element>
-              <a href="/card/growing">
-                <div class=circle-color></div>
-                <img class=img-element  src="images/growing.png" />
-                <div class=circle-title >Growing</div>
-              </a>
-            </div>
-          </li>
-
-          <li>
-            <div class=circle-element>
-              <a href="/card/harvesting">
-                <div class=circle-color></div>
-                <img class=img-element  src="images/harvesting.png" />
-                <div class=circle-title >Harvesting</div>
-              </a>
-            </div>
-          </li>
-
-          <li>
-            <div class=circle-element>
-              <a href="/card/transporting">
-                <div class=circle-color></div>
-                <img class=img-element  src="images/transporting.png" />
-                <div class=circle-title >Transport</div>
-              </a>
-            </div>
-          </li>
-
-          <li>
-            <div class=circle-element>
-              <a href="/card/processing">
-                <div class=circle-color></div>
-                <img class=img-element  src="images/mill.png" />
-                <div class=circle-title >Process</div>
-              </a>
-            </div>
-          </li>
-
-          <li>
-            <div class=circle-element>
-              <a href="/card/storing">
-                <div class=circle-color></div>
-                <img class=img-element  src="images/storage.png" />
-                <div class=circle-title >Storing</div>
-              </a>
-            </div>
-          </li>
-
-          <li>
-            <div class=circle-element>
-              <a href="/card/selling">
-                <div class=circle-color></div>
-                <img class=img-element src="images/market.png" />
-                <div class=circle-title >Selling</div>
-              </a>
-            </div>
-          </li>
-
         </ul>
 
       </div class=circle-menu>
-
 
     </div class=home-circle-container>
 
