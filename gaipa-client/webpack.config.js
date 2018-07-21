@@ -137,7 +137,8 @@ module.exports = ({production, server, extractCss, coverage, analyze} = {}) => (
       allChunks: true
     })),
     new CopyWebpackPlugin([
-      { from: 'static', to: 'static' }
+      { from: 'static', to: 'static' },
+      { from: 'manifest.webmanifest', to: 'manifest.json' }
       //{ from: 'src/sw-custom.js', to: 'sw-custom.js' }
     ]),
     ...when(analyze, new BundleAnalyzerPlugin())
