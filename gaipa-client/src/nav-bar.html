@@ -5,5 +5,11 @@
         <a href.bind="row.href">${row.title}</a>
       </li>
     </ul>
+    <a class='brand-logo center' route-href='overview'>
+      <span class='flow-text accent-text'>${router.title}</span>
+    </a>
+    <ul class="right">
+      <li><a route-href="search"><i class="material-icons">search</i></a></li>
+    </ul>
   </md-navbar>
 </template>

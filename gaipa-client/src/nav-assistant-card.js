@@ -26,23 +26,26 @@ export class NavAssistantCard {
     this.getCard(this.path);
   }
 
+  getCard(child) {
+    let error = '';
+    let path = this.path;
+    this.contentApi.getCard('/card' + path + '?expand=related-articles')
+      .then(
+        card => {
+          this.card = card;
+          this.relatedArticles = card['@components']['related-articles'].items;
+        }
+      )
+      .catch(error => {
+        this.error = error.message;
+      });
+  }
+
   navigateToCard(child) {
     let path = child['@id'];
     path = path.replace(this.baseUrl, '');
     this.router.navigate(path)
     //this.router.navigateToRoute('card', {path: path});
-  }
-
-  getCard(child) {
-    let error = '';
-    let path = this.path;
-    this.contentApi.getCard('/card' + path)
-      .then(
-        card => this.card = card
-      )
-      .catch(error => {
-        this.error = error.message;
-      });
   }
 
   navigateToSolution(solution) {

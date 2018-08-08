@@ -4,6 +4,7 @@ import 'babel-polyfill';
 import * as Bluebird from 'bluebird';
 import 'materialize-css';
 
+
 // remove out if you don't want a Promise polyfill (remove also from webpack.config.js)
 Bluebird.config({ warnings: { wForgottenReturn: false } });
 

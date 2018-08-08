@@ -1,11 +1,11 @@
 <template>
   <dl>
     <dt>Category</dt>
-    <dd>${solution.solution_category.title}</dd>
+    <dd>${article.solution_category.title}</dd>
   </dl>
-    <h1>${solution.title}</h1>
-    <span>${solution.description}</span>
-    <span innerhtml.bind="solution.text.data | sanitizeHTML">${solution.text.data}</span>
+    <h1>${article.title}</h1>
+    <span>${article.description}</span>
+    <span innerhtml.bind="article.text.data | sanitizeHTML">${article.text.data}</span>
 
     <div class="row">
       <h1 if.bind='services.length'>Services</h1>

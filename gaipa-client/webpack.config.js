@@ -31,7 +31,7 @@ module.exports = ({production, server, extractCss, coverage, analyze} = {}) => (
   },
   entry: {
     app: ['aurelia-bootstrapper'],
-    vendor: ['bluebird'],
+    vendor: ['bluebird']
   },
   mode: production ? 'production' : 'development',
   output: {
@@ -80,6 +80,12 @@ module.exports = ({production, server, extractCss, coverage, analyze} = {}) => (
         issuer: /\.html?$/i
       },
       { test: /\.html$/i, loader: 'html-loader' },
+      //{
+      //  test: /\.html$/,
+      //  exclude: /node_modules/,
+      //  loader: 'aurelia-template-lint-loader',
+      //  enforce: 'pre'
+      //},
       { test: /\.js$/i, loader: 'babel-loader', exclude: nodeModulesDir,
         options: coverage ? { sourceMap: 'inline', plugins: [ 'istanbul' ] } : {},
       },

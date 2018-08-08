@@ -4,7 +4,7 @@ import {ContentApi} from './api';
 
 
 @inject(ContentApi, Router)
-export class SolutionArticle {
+export class SolutionChapter {
   constructor(gaipaContentApi, router) {
     this.contentApi = gaipaContentApi;
     this.router = router;
@@ -13,22 +13,30 @@ export class SolutionArticle {
 
   activate(params) {
     this.articleId = params.articleId;
+    this.chapterId = params.chapterId;
   }
 
   bind() {
-    this.getArticleData('/solution/' + this.articleId);
+    this.getChapterData('/solution/' + this.articleId + '/' + this.chapterId);
   }
 
-  getArticleData(path) {
-    this.contentApi.getArticle(path)
+  getChapterData(path) {
+    this.contentApi.getChapter(path + '?expand=related-services')
       .then(
-        article => {
-          this.article = article;
+        chapter => {
+          this.chapter = chapter;
+          //this.relatedServices = chapter['@components']['related-services'].items;
         }
       )
       .catch(error => {
         this.error = error.message;
       });
+  }
+
+  navigateToArticle(parent) {
+    let path = parent['@id'];
+    path = path.replace(this.baseUrl, '');
+    this.router.navigate(path)
   }
 
   navigateToService(child) {

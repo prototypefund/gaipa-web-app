@@ -13,8 +13,8 @@ export class App {
       { route: '', name: 'overview', moduleId: PLATFORM.moduleName('./home'),      nav: true, title: 'Home' },
       { route: 'home', redirect: ''},
       { route: 'card/*path',  name: 'card', moduleId: PLATFORM.moduleName('./nav-assistant-card'), nav: false, title: 'Nav assistant card' },
-      { route: 'solution/*path',  name: 'solution', moduleId: PLATFORM.moduleName('./solution-article'), nav: false, title: 'Solution Article' },
-      //{ route: 'service/*path',  name: 'service', moduleId: PLATFORM.moduleName('./solution-service'), nav: false, title: 'Solution Service' },
+      { route: 'solution/:articleId',  name: 'article', moduleId: PLATFORM.moduleName('./solution-article'), nav: false, title: 'Solution Article' },
+      { route: 'solution/:articleId/:chapterId',  name: 'chapter', moduleId: PLATFORM.moduleName('./solution-chapter'), nav: false, title: 'Solution Chapter' },
       { route: 'provider/:providerId/service/:serviceId',  name: 'service', moduleId: PLATFORM.moduleName('./solution-service'), nav: false, title: 'Solution Service' },
       { route: 'settings',  name: 'settings', moduleId: PLATFORM.moduleName('./settings'), nav: true, title: 'Settings' },
       { route: 'search',  name: 'search', moduleId: PLATFORM.moduleName('./search'), nav: false, title: 'Search' }

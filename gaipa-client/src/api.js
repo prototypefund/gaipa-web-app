@@ -29,8 +29,6 @@ export class ContentApi {
             return response;
           }
         });
-        ;
-
     });
   }
 
@@ -40,10 +38,18 @@ export class ContentApi {
       .then(card => {
         return card;
       })
-      ;
+    ;
   }
 
-  getSolution(path) {
+  getArticle(path) {
+    return this.http.fetch(path)
+      .then(response => response.json())
+      .then(solution => {
+        return solution;
+      });
+  }
+
+  getChapter(path) {
     return this.http.fetch(path)
       .then(response => response.json())
       .then(solution => {
@@ -67,7 +73,7 @@ export class ContentApi {
       //    resolve(services);
       //  }, 1500);
       //}))
-      ;
+    ;
   }
 
   getService(path) {
@@ -79,7 +85,6 @@ export class ContentApi {
       .catch(error => {
         console.log('Error reading service data!');
       })
-      ;
+    ;
   }
-
 }

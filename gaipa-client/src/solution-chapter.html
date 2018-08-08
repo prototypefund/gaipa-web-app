@@ -1,0 +1,19 @@
+<template>
+    <a click.delegate='navigateToArticle(chapter.parent)'>${chapter.parent.title}</a> > ${chapter.title}
+
+    <h1>${chapter.title}</h1>
+    <span>${chapter.description}</span>
+    <span innerhtml.bind="chapter.text.data | sanitizeHTML">${chapter.text.data}</span>
+
+    <div class="row">
+      <h1 if.bind='relatedServices.length'>Services</h1>
+      <template repeat.for='service of relatedServices'>
+      <md-card class="col s6 m4 l3"
+        md-title.bind="service.title"
+        action="true"
+        click.delegate="navigateToService(service)">
+        <div>${ service.description }</div>
+      </md-card>
+      </template>
+    </div>
+</template>
