@@ -1,6 +1,6 @@
-import { HttpClient } from "aurelia-fetch-client";
-// import { HttpClient } from "aurelia-http-client";
-import { inject } from "aurelia-framework";
+import 'whatwg-fetch';
+import { HttpClient } from 'aurelia-fetch-client';
+import { inject } from 'aurelia-framework';
 
 
 @inject(HttpClient)
@@ -8,8 +8,6 @@ export class ContentApi {
   constructor(http) {
     this.http = http;
     const baseUrl = __GAIPA_API__;
-    // const baseUrl = 'http://localhost:7080/Plone/app';
-    //const baseUrl = 'http://gaipa.lan/app';
     http.configure(config => {
       config
         .rejectErrorResponses()
