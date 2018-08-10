@@ -24,11 +24,18 @@ export class SolutionArticle {
       .then(
         article => {
           this.article = article;
+          //this.relatedServices = article['@components']['related-services'].items;
         }
       )
       .catch(error => {
         this.error = error.message;
       });
+  }
+
+  navigateToChapter(child) {
+    let path = child['@id'];
+    path = path.replace(this.baseUrl, '');
+    this.router.navigate(path)
   }
 
   navigateToService(child) {

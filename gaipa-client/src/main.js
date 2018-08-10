@@ -16,8 +16,8 @@ export function configure(aurelia) {
       bridge
         .useAutoComplete()
         .useBadge()
-        .useBreadcrumbs()
         .useBox()
+        .useBreadcrumbs()
         .useButton()
         .useCard()
         .useCarousel()
@@ -48,6 +48,8 @@ export function configure(aurelia) {
         .useSlider()
         .useSwitch()
         .useTabs()
+        .useTapTarget()
+        .useTimePicker()
         .useTooltip()
         .useTransitions()
         .useWaves()
@@ -55,7 +57,7 @@ export function configure(aurelia) {
     });
 
   // Uncomment the line below to enable animation.
-  // aurelia.use.plugin(PLATFORM.moduleName('aurelia-animator-css'));
+  aurelia.use.plugin(PLATFORM.moduleName('aurelia-animator-css'));
   // if the css animator is enabled, add swap-order="after" to all router-view elements
 
   // Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
