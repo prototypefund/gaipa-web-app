@@ -9,6 +9,11 @@
   <p class="primaryDescription">${chapter.description}</p>
   <p innerhtml.bind="chapter.text.data | sanitizeHTML">${chapter.text.data}</p>
 
+
+  <button md-button class="accent"
+    click.delegate='navigateToArticle(chapter.parent)'>
+    <i class="material-icons left">view_list</i> Article overview</button>
+
   <div class="row">
     <h1 if.bind='relatedServices.length'>Services</h1>
     <template repeat.for='service of relatedServices'>

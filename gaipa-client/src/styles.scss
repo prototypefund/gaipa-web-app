@@ -73,10 +73,6 @@ h2.home-header {
 
     filter: invert(70%);
 
-    &:hover,
-    &:active {
-
-    }
   }
 }
 
@@ -174,10 +170,11 @@ span.nav-title-element {
     padding-left: 5px;
     filter: invert(90%);
     height: -webkit-fill-available;
+}
+
 #breadcrumb-bar{
   line-height: 64px;
 }
-
 .breadcrumb:last-child {
   color: var(--primary-color);
 }
