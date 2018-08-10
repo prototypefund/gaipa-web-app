@@ -1,11 +1,17 @@
 <template>
-  <dl>
-    <dt>Category</dt>
-    <dd>${article.solution_category.title}</dd>
-  </dl>
-    <h1>${article.title}</h1>
-    <span>${article.description}</span>
-    <span innerhtml.bind="article.text.data | sanitizeHTML">${article.text.data}</span>
+    <h1 class="primaryHeadline">${article.title}</h1>
+    <p class="primaryDescription">${article.description}</p>
+    <p innerhtml.bind="article.text.data | sanitizeHTML">${article.text.data}</p>
+
+    <md-collection>
+      <template repeat.for="chapter of article.items">
+      <md-collection-item class="">
+        <i class="material-icons accent-text">art_track</i> <a href=""
+          click.delegate="navigateToChapter(chapter)"><h2>${chapter.title}</h2></a>
+      </md-collection-item>
+      </template>
+    </md-collection>
+
 
     <div class="row">
       <h1 if.bind='services.length'>Services</h1>
