@@ -57,33 +57,11 @@ export class ContentApi {
       });
   }
 
-  getSolutionServices(category) {
-    let basePath = '/@search?portal_type=Solution%20Service&sort_on=sortable_title';
-    let servicesPath = basePath;
-    if (category) {
-      servicesPath = servicesPath + '&solution_category=' + category;
-    }
-    return this.http.fetch(servicesPath)
-      .then(response => response.json())
-      .then(services => {
-        return services.items;
-      })
-      //.then(services => new Promise(function(resolve, reject) {
-      //  setTimeout(() => {
-      //    resolve(services);
-      //  }, 1500);
-      //}))
-    ;
-  }
-
   getService(path) {
     return this.http.fetch(path)
       .then(response => response.json())
       .then(service => {
         return service;
-      })
-      .catch(error => {
-        console.log('Error reading service data!');
       })
     ;
   }

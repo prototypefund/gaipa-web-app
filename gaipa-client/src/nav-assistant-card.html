@@ -17,21 +17,16 @@
     <div class="row">
       <h1 if.bind='relatedArticles.length'>Solutions</h1>
       <template repeat.for='solution of relatedArticles'>
-      <md-card class="col s6 m4 l3"
-        md-title.bind="solution.title"
-        action="true"
-        click.delegate="navigateToSolution(solution)">
-        <div>${ solution.description }</div>
-      </md-card>
+      <div class="col s12 m6 l4">
+      <div class="card" click.delegate="navigateToSolution(solution)">
+        <div class="card-content">
+          <span class="card-title">${solution.parentTitle} - ${ solution.title }</span>
+          <p class="primaryDescription">${solution.description}</p>
+          <p innerhtml.bind="solution.text.data | sanitizeHTML">${solution.text.data}</p>
+        </div>
+      </div>
+      </div>
       </template>
     </div>
-
-
- <!--
-  <md-collection>
-    <md-collection-item repeat.for='solution of data.solutions'
-      class='accent-text'><a href="">${ child.title }</a></md-collection-item>
-  </md-collection>
--->
 
 </template>

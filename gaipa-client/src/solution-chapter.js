@@ -25,7 +25,7 @@ export class SolutionChapter {
       .then(
         chapter => {
           this.chapter = chapter;
-          //this.relatedServices = chapter['@components']['related-services'].items;
+          this.relatedServices = chapter['@components']['related-services'].items;
         }
       )
       .catch(error => {
