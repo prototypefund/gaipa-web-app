@@ -1,5 +1,31 @@
 <template>
-    <h1>${card.title}</h1>
+
+    <!-- Hearder -->
+    <img if.bind="card.useHeaderImage" class="cardHeaderImage" src=${card.image_caption}/>
+    <span class="cardHeaderTitle">${card.title}</span>
+    <span class="cardHeaderDescription" >${card.description}</span>
+    <hr class="cardHeaderLine"/>
+    <!-- childs-->
+    <span innerhtml.bind="card.text.data | sanitizeHTML">${card.text.data}</span>
+
+    <template repeat.for='child of card.items'>
+      <div class="row">
+      <md-card
+        md-title.bind="child.title"
+        action="true"
+        click.delegate="navigateToCard(child)"
+
+        >
+        <!-- <img src=${card.image_caption}/> -->
+
+
+        <div>${ child.description }</div>
+      </md-card>
+      </div>
+    </template>
+
+    <!-- Old Render To DELETE -->
+    <!-- <h1>${card.title}</h1>
     <span>${card.description}</span>
     <span innerhtml.bind="card.text.data | sanitizeHTML">${card.text.data}</span>
 
@@ -12,21 +38,27 @@
         <div>${ child.description }</div>
       </md-card>
       </template>
-    </div>
+    </div> -->
 
-    <div class="row">
-      <h1 if.bind='relatedArticles.length'>Solutions</h1>
-      <template repeat.for='solution of relatedArticles'>
-      <div class="col s12 m6 l4">
-      <div class="card" click.delegate="navigateToSolution(solution)">
-        <div class="card-content">
-          <span class="card-title">${solution.parentTitle} - ${ solution.title }</span>
-          <p class="primaryDescription">${solution.description}</p>
-          <p innerhtml.bind="solution.text.data | sanitizeHTML">${solution.text.data}</p>
-        </div>
-      </div>
-      </div>
-      </template>
-    </div>
+    <!-- Related Solutions Header-->
+
+      <span class="cardHeaderTitle" if.bind='relatedArticles.length'>Solutions</span>
+      <span class="cardHeaderDescription" >Related solutions</span>
+      <hr class="cardHeaderLine"/>
+
+
+
+
+    <template repeat.for='solution of relatedArticles'>
+        <div class="row">
+            <div class="card" click.delegate="navigateToSolution(solution)">
+                <div class="card-content">
+                <span class="card-title">${solution.parentTitle} - ${ solution.title }</span>
+                <p class="primaryDescription">${solution.description}</p>
+                <p innerhtml.bind="solution.text.data | sanitizeHTML">${solution.text.data}</p>
+                </div>
+            </div>
+       </div>
+    </template>
 
 </template>
