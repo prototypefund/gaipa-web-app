@@ -59,7 +59,7 @@ h2.home-header {
 }
 
 .circle-container {
-  @include on-circle($item-count: 10, $circle-size: 20em, $item-size: 5em);
+  @include on-circle($item-count: 10, $circle-size: 25em, $item-size: 5em);
 
 
   img.img-element {
@@ -116,7 +116,7 @@ img.home-background {
     align-items: center;
     position: absolute;
     top: 0px;
-    bottom: 0px;
+    bottom: 60px;
     left: 0px;
     right: 0px;
 }
@@ -153,6 +153,12 @@ span.nav-title-element {
     position: relative;
 }
 
+//Add padding to the bottom of the main content (Hidden by footer)
+
+section#content {
+    padding-bottom: 60px;
+}
+
 //Footer Nav Bar
 footer {
     overflow: hidden;
@@ -161,6 +167,26 @@ footer {
     width: 100%;
 }
 
+
+//Header
+img.cardHeaderImage{
+  margin-top: 10px;
+  width: 40px;
+  height: 40px;
+  filter: invert(100%);
+
+}
+
+span.cardHeaderTitle {
+    padding-right: 10px;
+    font-size: xx-large;
+}
+span.cardHeaderDescription {
+    font-size: smaller;
+}
+hr.cardHeaderLine {
+    margin-bottom: 20px;
+}
 //CardAssitant view
 
 .card-header {
@@ -179,6 +205,13 @@ footer {
     filter: invert(90%);
     height: -webkit-fill-available;
 }
+
+.card .card-content {
+    background-color: #ffb74d;
+    padding: 24px;
+    border-radius: 0 0 2px 2px;
+}
+
 
 #breadcrumb-bar{
   line-height: 64px;
