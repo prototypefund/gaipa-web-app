@@ -15,7 +15,7 @@
     </div>
 
     <div class="row">
-      <h1 if.bind='relatedArticles.length'>Solutions</h1>
+      <h2 if.bind='relatedArticles.length'>Solutions</h2>
       <template repeat.for='solution of relatedArticles'>
       <div class="col s12 m6 l4">
       <div class="card" click.delegate="navigateToSolution(solution)">
