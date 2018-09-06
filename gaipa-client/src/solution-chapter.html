@@ -1,18 +1,23 @@
 <template>
-  <div id="breadcrumb-bar" class='accent-text'>
-    <a href="#!" click.delegate='navigateToArticle(chapter.parent)'
-      class="breadcrumb accent-text">${chapter.parent.title}</a>
-    <a class="breadcrumb">${chapter.title}</a>
-  </div>
-
-  <h1 class="primaryHeadline">${chapter.title}</h1>
-  <p class="primaryDescription">${chapter.description}</p>
-  <p innerhtml.bind="chapter.text.data | sanitizeHTML">${chapter.text.data}</p>
-
-
-  <button md-button class="accent"
+  <!--solutionChapterBreadcrumb  -->
+  <nav class="breadcrumbBar">
+    <div id="breadcrumb-bar" >
+      <a href="#!" click.delegate='navigateToArticle(chapter.parent)'
+      class="breadcrumb">${chapter.parent.title}</a>
+      <a class="breadcrumb">${chapter.title}</a>
+    </div>
+  </nav>
+  <!--solutionChapterHeader  -->
+  <h1 class="solutionChapterTitle">${chapter.title}</h1>
+  <p class="solutionChapterDescription">${chapter.description}</p>
+  <hr class="cardHeaderLine"/>
+  <!--solutionChapterContent  -->
+  <p class="solutionChapterText" innerhtml.bind="chapter.text.data | sanitizeHTML">${chapter.text.data}</p>
+  <!--solutionChapterButton  -->
+  <button md-button class="solutionChapterButton"
     click.delegate='navigateToArticle(chapter.parent)'>
     <i class="material-icons left">view_list</i> Article overview</button>
+
 
   <div class="row">
     <h1 if.bind='relatedServices.length'>Services</h1>
