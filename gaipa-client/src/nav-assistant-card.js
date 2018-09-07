@@ -8,7 +8,7 @@ import {ContentApi} from './api';
 export class NavAssistantCard {
   constructor(gaipaContentApi, router) {
     this.contentApi = gaipaContentApi;
-    this.baseUrl = __GAIPA_API__;
+    this.baseUrl = __GAIPA_API__ + '/app';
     this.router = router;
     this.pathrd = null;
     this.path = '';

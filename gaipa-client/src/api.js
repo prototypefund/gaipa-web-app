@@ -1,5 +1,5 @@
 import 'whatwg-fetch';
-import { HttpClient } from 'aurelia-fetch-client';
+import { HttpClient, json } from 'aurelia-fetch-client';
 import { inject } from 'aurelia-framework';
 
 
@@ -10,15 +10,15 @@ export class ContentApi {
     const baseUrl = __GAIPA_API__;
     http.configure(config => {
       config
-        .rejectErrorResponses()
-        .withBaseUrl(baseUrl)
-        .withDefaults({
-          credentials: 'same-origin',
-          headers: {
-            'Accept': 'application/json',
-            'X-Requested-With': 'Fetch'
-          }
-        })
+        //.rejectErrorResponses()
+        //.withBaseUrl(baseUrl)
+        //.withDefaults({
+        //  headers: {
+        //    'Accept': 'application/json',
+        //    'Content-Type': 'application/json',
+        //    'X-Requested-With': 'Fetch'
+        //  }
+        //})
         .withInterceptor({
           request(request) {
             console.log(`Requesting ${request.method} ${request.url}`);
@@ -33,7 +33,7 @@ export class ContentApi {
   }
 
   getCard(path) {
-    return this.http.fetch(path)
+    return this.http.fetch('/app' + path)
       .then(response => response.json())
       .then(card => {
         return card;
@@ -42,7 +42,7 @@ export class ContentApi {
   }
 
   getArticle(path) {
-    return this.http.fetch(path)
+    return this.http.fetch('/app' + path)
       .then(response => response.json())
       .then(solution => {
         return solution;
@@ -50,7 +50,7 @@ export class ContentApi {
   }
 
   getChapter(path) {
-    return this.http.fetch(path)
+    return this.http.fetch('/app' + path)
       .then(response => response.json())
       .then(solution => {
         return solution;
@@ -58,11 +58,48 @@ export class ContentApi {
   }
 
   getService(path) {
-    return this.http.fetch(path)
+    return this.http.fetch('/app' + path)
       .then(response => response.json())
       .then(service => {
         return service;
       })
     ;
+  }
+
+  search(path) {
+    return this.http.fetch('/app' + path)
+      .then(response => response.json())
+      .then(service => {
+        return service;
+      })
+    ;
+  }
+
+  doLogin(login, password) {
+    let path = '/@login';
+    let loginData = {
+      login: login,
+      password: password
+    };
+    //this.http.baseUrl = this.http.baseUrl.replace('/app', '')
+    this.http.fetch('http://localhost:7080/Plone/@login', {
+      method: 'POST',
+      body: JSON.stringify(loginData)
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      });
+    //return this.http.fetch(
+    //  'http://localhost:7080/Plone' + path, {
+    //    method: 'POST',
+    //    body: JSON.stringify(loginData)
+    //  }
+    //)
+    //  .then(response => response.json())
+    //  .then(status => {
+    //    return status;
+    //  })
+    //;
   }
 }

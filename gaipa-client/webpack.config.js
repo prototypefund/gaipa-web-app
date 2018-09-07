@@ -30,8 +30,8 @@ module.exports = ({production, server, extractCss, coverage, analyze} = {}) => (
     modules: [srcDir, 'node_modules'],
   },
   entry: {
-    app: ['aurelia-bootstrapper'],
-    vendor: ['bluebird']
+    app: ['aurelia-bootstrapper']
+    //vendor: ['bluebird']
   },
   mode: production ? 'production' : 'development',
   output: {
@@ -91,7 +91,7 @@ module.exports = ({production, server, extractCss, coverage, analyze} = {}) => (
       },
       { test: /\.json$/i, loader: 'json-loader' },
       // use Bluebird as the global Promise implementation:
-      { test: /[\/\\]node_modules[\/\\]bluebird[\/\\].+\.js$/, loader: 'expose-loader?Promise' },
+      //{ test: /[\/\\]node_modules[\/\\]bluebird[\/\\].+\.js$/, loader: 'expose-loader?Promise' },
       // embed small images and fonts as Data Urls and larger ones as files:
       { test: /\.(png|gif|jpg|cur)$/i, loader: 'url-loader', options: { limit: 8192 } },
       { test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff2' } },
@@ -102,9 +102,9 @@ module.exports = ({production, server, extractCss, coverage, analyze} = {}) => (
   },
   plugins: [
     new AureliaPlugin(),
-    new ProvidePlugin({
-      'Promise': 'bluebird'
-    }),
+    //new ProvidePlugin({
+    //  'Promise': 'bluebird'
+    //}),
     new ModuleDependenciesPlugin({
       'aurelia-testing': [ './compile-spy', './view-spy' ]
     }),
@@ -136,7 +136,7 @@ module.exports = ({production, server, extractCss, coverage, analyze} = {}) => (
       importWorkboxFrom: 'local'
     }),
     new DefinePlugin({
-      __GAIPA_API__: production ? "'https://gaipa.org/app'" : "'http://localhost:7080/Plone/app'"
+      __GAIPA_API__: production ? "'https://gaipa.org'" : "'http://localhost:7080/Plone'"
     }),
     ...when(extractCss, new ExtractTextPlugin({
       filename: production ? '[contenthash].css' : '[id].css',

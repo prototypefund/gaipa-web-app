@@ -6,7 +6,7 @@ import {ContentApi} from './api';
 export class SolutionService {
   constructor(gaipaContentApi) {
     this.contentApi = gaipaContentApi;
-    this.baseUrl = __GAIPA_API__;
+    this.baseUrl = __GAIPA_API__ = '/app';
   }
 
   activate(params) {

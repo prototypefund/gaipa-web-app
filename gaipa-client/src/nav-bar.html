@@ -1,7 +1,10 @@
-<template bindable="router">
+<template>
+  <require from="./resources/value-converters/auth-filter"></require>
+
   <md-navbar fixed="true">
     <ul class='left'>
-      <li md-waves repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+      <li md-waves repeat.for="row of router.navigation | authFilter"
+        class="${row.isActive ? 'active' : ''}">
         <a href.bind="row.href">${row.title}</a>
       </li>
     </ul>
@@ -10,6 +13,9 @@
     </a>
     <ul class="right">
       <li><a route-href="search"><i class="material-icons">search</i></a></li>
+      <li><a route-href="login" if.bind="!user">login</a></li>
+      <li if.bind="user">${user.sub}</li>
+      <li if.bind="user"><a click.delegate="logOut()">logout</a></li>
     </ul>
   </md-navbar>
 </template>

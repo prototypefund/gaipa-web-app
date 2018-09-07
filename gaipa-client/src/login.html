@@ -1,0 +1,18 @@
+<template>
+  <h1>Login</h1>
+  <form submit.delegate="logIn()">
+    <div class="field">
+      <label for="login">User</label>
+      <input type="text" name="login" placeholder="User" value.bind="login">
+    </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <input type="password" name="password" placeholder="Password" value.bind="password">
+    </div>
+
+    <div>
+      <button type='submit'
+        disabled.bind="!(login.length > 0 && password.length > 0)">Login</button>
+    </div>
+  </form>
+</template>
