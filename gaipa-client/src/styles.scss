@@ -84,8 +84,8 @@ h2.home-header {
 }
 
 .circle-title {
-  font-size: large;
-  bottom: 10px;
+  font-size: small;
+  bottom: 5px;
   /* left: 15px; */
   text-align: center;
   font-weight: bold;
@@ -120,20 +120,13 @@ img.home-background {
     right: 0px;
 }
 
-img.farmer-1 {
+img.farmers {
     position: absolute;
-    width: 80px;
-    height: 80px;
+    width: 170px;
+    height: 170px;
     filter: invert(40%);
-    margin-left: 30px;
 }
-img.farmer-2 {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    filter: invert(40%);
-    margin-left: -30px;
-}
+
 // Navigation Bar
 img.nav-img-element {
     max-height: -webkit-fill-available;
@@ -162,8 +155,25 @@ section#content {
 footer {
     overflow: hidden;
     position: fixed;
+    margin-bottom: -3px;
     bottom: 0;
     width: 100%;
+    height: 60px;
+}
+
+
+
+img.navbarImage {
+    vertical-align: middle;
+    width: 45px;
+}
+
+ li.navBarElement {
+      width: 70px;
+      line-height: 55px;
+      text-align: center;
+      display: block;
+      float: left;
 }
 
 
@@ -211,17 +221,73 @@ hr.cardHeaderLine {
     border-radius: 0 0 2px 2px;
 }
 
+// BREADCRUMB FOR SOLUTION ARTICLES
+
+nav.breadcrumbBar {
+    margin-top: 10px;
+    background-color: #cdc279;
+}
+
+a.breadcrumb {
+    font-size: initial;
+    font-weight: bold;
+}
 
 #breadcrumb-bar{
-  line-height: 64px;
+  padding-left: 10px;
+
 }
 .breadcrumb:last-child {
-  color: var(--primary-color);
-}
-.breadcrumb::before{
-  color: var(--primary-color);
+
   font-size: auto;
 }
+.breadcrumb::before{
+  color: #aeaeae;
+  font-size: auto;
+}
+
+// Title and desciption for Solution Articles
+h1.solutionChapterTitle {
+    font-size: x-large;
+}
+
+p.solutionChapterText {
+    text-align: justify;
+}
+
+img.image-inline {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.image-right {
+      max-width: 50%;
+      float: right;
+      margin-left: 10px;
+}
+
+.image-left{
+  max-width: 50%;
+  float: left;
+  margin-right: 10px;
+}
+
+button.solutionChapterButton.au-target.btn.accent {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.solutionArticleHeader {
+    font-size: xx-large;
+}
+
+md-collection-item.au-target.collection-item {
+    font-size: smaller;
+}
+
+
 
 .collection .collection-item{
   padding: 10px 10px;
@@ -242,18 +308,12 @@ hr.cardHeaderLine {
   }
 }
 
-.primaryDescription {
+.primaryHeadLine {
   font-weight: 600;
 }
 
-.image-right{
-  float: right;
-  margin: .5em;
-}
-
-.image-left{
-  float: left;
-  margin: .5em;
+.primaryDescription {
+  font-weight: 600;
 }
 
 @media only screen and (max-width: 600px) {

@@ -3,19 +3,41 @@
 
   <md-navbar fixed="true">
     <ul class='left'>
-      <li md-waves repeat.for="row of router.navigation | authFilter"
-        class="${row.isActive ? 'active' : ''}">
-        <a href.bind="row.href">${row.title}</a>
-      </li>
-    </ul>
-    <a class='brand-logo center' route-href='overview'>
+
+    <li class="navBarElement">
+      <a class="navBarLink" href="/" ><img class="navbarImage" src="../static/HomeCircle.png"/></a>
+    </li>
+
+    <li class="navBarElement">
+      <a class="navBarLink" href="/weather" ><img class="navbarImage" src="../static/weather.png"/></a>
+    </li>
+
+    <li class="navBarElement">
+      <a class="navBarLink" href="/news" ><img class="navbarImage" src="../static/news.png"/></a>
+    </li>
+
+    <li class="navBarElement">
+      <a class="navBarLink" href="/messages" ><img class="navbarImage" src="../static/chat.png"/></a>
+    </li>
+
+    <li class="navBarElement">
+      <a class="navBarLink" href="/settings" ><img class="navbarImage" src="../static/settings.png"/></a>
+    </li>
+
+    <li md-waves repeat.for="row of router.navigation | authFilter"
+      class="${row.isActive ? 'active' : ''}">
+      <a href.bind="row.href">${row.title}</a>
+    </li>
+
+  </ul>
+    <!-- <a class='brand-logo center' route-href='overview'>
       <span class='flow-text accent-text'>${router.title}</span>
-    </a>
+    </a> -->
     <ul class="right">
-      <li><a route-href="search"><i class="material-icons">search</i></a></li>
       <li><a route-href="login" if.bind="!user">login</a></li>
       <li if.bind="user">${user.sub}</li>
       <li if.bind="user"><a click.delegate="logOut()">logout</a></li>
+      <li><a route-href="search"><i class="material-icons">search</i></a>Search</li>
     </ul>
   </md-navbar>
 </template>
