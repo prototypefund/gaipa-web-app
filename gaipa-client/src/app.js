@@ -1,19 +1,37 @@
 import {PLATFORM, DOM} from 'aurelia-pal';
 import { inject } from "aurelia-framework";
+import { HttpClient } from "aurelia-fetch-client";
+import { AuthService } from './services/auth';
 
-@inject(Element)
+
+@inject(Element, HttpClient, AuthService)
 export class App {
   primaryColor = '#9b924c';
   accentColor = '#f7a500';
   errorColor = '#FF0000';
 
-  constructor(element) {
+  constructor(element, http, authService) {
     this.element = element;
     this.element.style.setProperty('--primary-color', this.primaryColor);
     this.element.style.setProperty('--accent-color', this.accentColor);
     this.element.style.setProperty('--error-color', this.errorColor);
 
+    this.auth = authService;
+    const baseUrl = __GAIPA_API__;
+    http.configure(config => {
+      config
+        .withBaseUrl(baseUrl)
+        .withDefaults({
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'Fetch'
+          }
+        })
+        .withInterceptor(this.auth.tokenInterceptor);
+    });
   }
+
 
   configureRouter(config, router) {
     config.title = 'gaipa';
@@ -26,7 +44,9 @@ export class App {
       { route: 'solution/:articleId', name: 'article', moduleId: PLATFORM.moduleName('./solution-article'), nav: false, title: 'Solution Article' },
       { route: 'solution/:articleId/:chapterId', name: 'chapter', moduleId: PLATFORM.moduleName('./solution-chapter'), nav: false, title: 'Solution Chapter' },
       { route: 'provider/:providerId/service/:serviceId', name: 'service', moduleId: PLATFORM.moduleName('./solution-service'), nav: false, title: 'Solution Service' },
-      { route: 'settings', name: 'settings', moduleId: PLATFORM.moduleName('./settings'), nav: true, title: 'Settings' },
+      { route: 'settings', name: 'settings', moduleId: PLATFORM.moduleName('./settings'), nav: true, title: 'Settings', settings: {auth: true} },
+      { route: 'login', name: 'login', moduleId: PLATFORM.moduleName('./login'), nav: false, title: 'Login' },
+      { route: 'register', name: 'register', moduleId: PLATFORM.moduleName('./register'), nav: false, title: 'Register' },
       { route: 'search', name: 'search', moduleId: PLATFORM.moduleName('./search'), nav: false, title: 'Search' }
     ]);
 

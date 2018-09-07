@@ -8,7 +8,7 @@ export class SolutionArticle {
   constructor(gaipaContentApi, router) {
     this.contentApi = gaipaContentApi;
     this.router = router;
-    this.baseUrl = __GAIPA_API__;
+    this.baseUrl = __GAIPA_API__ + '/app';
   }
 
   activate(params) {
