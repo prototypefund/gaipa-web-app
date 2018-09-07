@@ -44,7 +44,7 @@ export class App {
       { route: 'solution/:articleId', name: 'article', moduleId: PLATFORM.moduleName('./solution-article'), nav: false, title: 'Solution Article' },
       { route: 'solution/:articleId/:chapterId', name: 'chapter', moduleId: PLATFORM.moduleName('./solution-chapter'), nav: false, title: 'Solution Chapter' },
       { route: 'provider/:providerId/service/:serviceId', name: 'service', moduleId: PLATFORM.moduleName('./solution-service'), nav: false, title: 'Solution Service' },
-      { route: 'settings', name: 'settings', moduleId: PLATFORM.moduleName('./settings'), nav: true, title: 'Settings', settings: {auth: true} },
+      { route: 'settings', name: 'settings', moduleId: PLATFORM.moduleName('./settings'), nav: true, title: 'Settings' },
       { route: 'login', name: 'login', moduleId: PLATFORM.moduleName('./login'), nav: false, title: 'Login' },
       { route: 'register', name: 'register', moduleId: PLATFORM.moduleName('./register'), nav: false, title: 'Register' },
       { route: 'search', name: 'search', moduleId: PLATFORM.moduleName('./search'), nav: false, title: 'Search' }

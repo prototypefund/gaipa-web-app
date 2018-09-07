@@ -3,7 +3,7 @@
     <p class="primaryDescription">${article.description}</p>
 
     <md-collection>
-      <template repeat.for="chapter of article.items">
+      <template repeat.for="chapter of chapters">
       <md-collection-item class="">
         <i class="material-icons accent-text">art_track</i> <a href=""
           click.delegate="navigateToChapter(chapter)"><h2>${chapter.title}</h2></a>

@@ -24,6 +24,9 @@ export class SolutionArticle {
       .then(
         article => {
           this.article = article;
+          this.chapters = article.items.filter((item) => {
+            return item['@type'] === 'Chapter';
+          });
           //this.relatedServices = article['@components']['related-services'].items;
         }
       )
