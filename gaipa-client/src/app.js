@@ -38,13 +38,13 @@ export class App {
     config.options.pushState = true;
     config.options.root = '/';
     config.map([
-      { route: '', name: 'overview', moduleId: PLATFORM.moduleName('./home'),      nav: true, title: 'Home' },
+      { route: '', name: 'overview', moduleId: PLATFORM.moduleName('./home'), nav: false, title: 'Home' },
       { route: 'home', redirect: ''},
       { route: 'card/*path', name: 'card', moduleId: PLATFORM.moduleName('./nav-assistant-card'), nav: false, title: 'Nav assistant card' },
       { route: 'solution/:articleId', name: 'article', moduleId: PLATFORM.moduleName('./solution-article'), nav: false, title: 'Solution Article' },
       { route: 'solution/:articleId/:chapterId', name: 'chapter', moduleId: PLATFORM.moduleName('./solution-chapter'), nav: false, title: 'Solution Chapter' },
       { route: 'provider/:providerId/service/:serviceId', name: 'service', moduleId: PLATFORM.moduleName('./solution-service'), nav: false, title: 'Solution Service' },
-      { route: 'settings', name: 'settings', moduleId: PLATFORM.moduleName('./settings'), nav: true, title: 'Settings' },
+      { route: 'settings', name: 'settings', moduleId: PLATFORM.moduleName('./settings'), nav: false, title: 'Settings' },
       { route: 'login', name: 'login', moduleId: PLATFORM.moduleName('./login'), nav: false, title: 'Login' },
       { route: 'register', name: 'register', moduleId: PLATFORM.moduleName('./register'), nav: false, title: 'Register' },
       { route: 'search', name: 'search', moduleId: PLATFORM.moduleName('./search'), nav: false, title: 'Search' }
