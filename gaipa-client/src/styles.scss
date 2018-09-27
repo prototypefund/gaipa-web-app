@@ -58,7 +58,7 @@ h2.home-header {
 }
 
 .circle-container {
-  @include on-circle($item-count: 10, $circle-size: 25em, $item-size: 5em);
+  @include on-circle($item-count: 10, $circle-size: 20em, $item-size: 5em);
 
 
   img.img-element {
