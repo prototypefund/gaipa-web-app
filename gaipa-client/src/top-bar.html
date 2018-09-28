@@ -1,3 +1,7 @@
-<template bindable="router">
-  <div class="error" if.bind='error'>${ error }</div>
+<template>
+  <div
+    id="status-bar"
+    class="card yellow lighten-5 ${message.type}"
+    if.bind='message.message'
+    >${ message.message }<button click.delegate="clearMessage()">x</button></div>
 </template>

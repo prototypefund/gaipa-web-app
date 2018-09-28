@@ -7,18 +7,35 @@ import {
 import {
   Router
 } from 'aurelia-router';
+import {
+  EventAggregator
+} from 'aurelia-event-aggregator';
 
 
-@inject(Router, AuthService)
+@inject(Router, AuthService, EventAggregator)
 export class NavBar {
-  constructor(router, authService) {
+  constructor(router, authService, eventAggregator) {
     this.auth = authService;
     this.router = router;
+    this.eventAggregator = eventAggregator;
   }
 
   bind() {
     this.user = this.auth.getUser();
-    console.log(this.user);
+  }
+
+  attached() {
+    this.userChanged = this.subscribe();
+  }
+
+  subscribe() {
+    this.eventAggregator.subscribe('user-changed', s => {
+      this.user = this.auth.getUser();
+    });
+  }
+
+  detached() {
+    this.userChanged.dispose();
   }
 
   logOut() {
