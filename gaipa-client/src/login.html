@@ -23,9 +23,15 @@
 
         <div>
         <button id="loginButton" md-button md-waves type='submit'
-            disabled.bind="!(login.length > 0 && password.length > 0)">Login</button>
+            disabled.bind="!(login.length > 0 && password.length > 0)">Sign in</button>
         </div>
-        No account? <a route-href="register">Register now for gaipa community</a>!
+        <div id="noAccount">
+        No account? Register now for gaipa community
+        </div>
+
+      <a route-href="register">
+          <button id="registerButton" md-button md-waves>Create account</button>
+      </div></a>
       </form>
     </div>
 
