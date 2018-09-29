@@ -1,20 +1,36 @@
 <template>
-  <h1>Login</h1>
-  <div class="error" if.bind='error'>${ error }</div>
-  <form submit.delegate="logIn()">
-    <div class="field">
-      <label for="login">User</label>
-      <input type="text" name="login" placeholder="User" value.bind="login">
-    </div>
-    <div class="field">
-      <label for="password">Password</label>
-      <input type="password" name="password" placeholder="Password" value.bind="password">
-    </div>
+
+<div class="error" if.bind='error'>${ error }</div>
+
+<div class="loginContent">
+
+   <md-card title="Login" class="loginCard" >
+    <div class="error" if.bind='error'>${ error }</div>
+    <img class="loginImage" src="../static/gaipaLogo512.png"/>
+    <span class="card-title">Login</span>
+
     <div>
-      <button type='submit'
-        disabled.bind="!(login.length > 0 && password.length > 0)">Login</button>
+      <form submit.delegate="logIn()">
+
+        <div class="field">
+          <label for="login" id="loginLabel">User</label>
+          <input type="text" name="login" placeholder="User" value.bind="login" id="loginInputUser">
+        </div>
+        <div class="field">
+          <label for="password" id="loginLabel" >Password</label>
+          <input type="password" name="password" placeholder="Password" value.bind="password" id="loginInputPassword">
+        </div>
+
+        <div>
+        <button id="loginButton" md-button md-waves type='submit'
+            disabled.bind="!(login.length > 0 && password.length > 0)">Login</button>
+        </div>
+        No account? <a route-href="register">Register now for gaipa community</a>!
+      </form>
     </div>
 
-    No account? <a route-href="register">Register now for gaipa community</a>!
-  </form>
+  </md-card>
+
+</div class="loginContent">
+
 </template>
