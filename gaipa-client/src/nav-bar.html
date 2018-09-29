@@ -3,15 +3,14 @@
 
   <md-navbar fixed="true">
     <ul class='left'>
-
       <li class="navBarElement">
         <a class="navBarLink" href="/" ><img class="navbarImage" src="../static/home.png"/></a>
       </li>
-<!--
       <li class="navBarElement">
-        <a class="navBarLink" href="/weather" ><img class="navbarImage" src="../static/community.png"/></a>
+        <a class="navBarLink" href="/community" ><img class="navbarImage" src="../static/community.png"/></a>
       </li>
 
+<!--
       <li class="navBarElement">
         <a class="navBarLink" href="/news" ><img class="navbarImage" src="../static/news.png"/></a>
       </li>
@@ -26,7 +25,7 @@
     -->
       <li md-waves repeat.for="row of router.navigation | authFilter"
         class="${row.isActive ? 'active' : ''}">
-        <a href.bind="row.href">${row.title}<img class="navbarImage" src="../static/community.png"/></a>
+        <a href.bind="row.href">${row.title}<img class="navbarImage" src="${row.settings.icon || '../static/community.png'}"/></a>
       </li>
 
     </ul>
@@ -37,7 +36,7 @@
       <li><a route-href="search"><img class="navbarImage" src="../static/search.png"/></a></li>
       <li><a route-href="login" if.bind="!user"><img class="navbarImage" src="../static/login.png"/></a></li>
       <!-- <li if.bind="user">${user.sub}</li> -->
-      <li if.bind="user"><a route-href="search"><img class="navbarImage" src="../static/profile.png"/></a></li>
+      <li if.bind="user"><a href="profile"><img class="navbarImage" src="../static/profile.png"/></a></li>
       <li if.bind="user"><a click.delegate="logOut()"><img class="navbarImage" src="../static/logout.png"/></a></li>
 
     </ul>

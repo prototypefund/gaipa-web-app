@@ -5,29 +5,24 @@ import {
 import {
   inject
 } from 'aurelia-framework';
+import { EventAggregator } from 'aurelia-event-aggregator';
 
 
 const TOKEN = 'ploneAuthToken';
 
 
-@inject(HttpClient)
+@inject(HttpClient, EventAggregator)
 export class AuthService {
-  constructor(http) {
+  constructor(http, eventAggregator) {
     this.http = http;
     const baseUrl = __GAIPA_API__;
+    this.eventAggregator = eventAggregator;
     http.configure(config => {
       config
         //.rejectErrorResponses()
         .withBaseUrl(baseUrl)
         .withHeader('Accept', 'application/json')
         .withHeader('Content-Type', 'application/json')
-        //.withDefaults({
-        //  headers: {
-        //    'Accept': 'application/json',
-        //    'Content-Type': 'application/json',
-        //    'X-Requested-With': 'Fetch'
-        //  }
-        //})
         .withInterceptor({
           request(request) {
             console.log(`Requesting ${request.method} ${request.url}`);
@@ -56,12 +51,8 @@ export class AuthService {
             TOKEN,
             tokenResult.content.token
           );
-          console.log('got token from Plone :)');
         }
         return tokenResult;
-      })
-      .catch(error => {
-        console.log('Error retrieving token');
       });
   }
 
