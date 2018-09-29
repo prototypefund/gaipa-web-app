@@ -267,12 +267,24 @@ button#loginButton {
 
 img.loginImage {
   width: 40%;
+  max-width: 200px;
   display: block;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: -40px;
   margin-top: -40px;
 }
+div#noAccount {
+    padding-top: 20px;
+}
+
+
+button#registerButton {
+    margin-top: 5px;
+    width: 100%;
+    background-color: #9bbe4c;
+}
+
 
 // BREADCRUMB FOR SOLUTION ARTICLES
 
