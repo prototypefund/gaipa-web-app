@@ -1,8 +1,36 @@
 <template>
-  <h1>Join the gaipa community!</h1>
-  <form submit.delegate="registerUser()">
-    <input type='text' name="email" value.bind="email" placeholder="email">
-    <input type='text' name="fullname" value.bind="fullname" placeholder="fullname">
-    <button type='submit'>Join</button>
-  </form>
+
+
+
+  <div class="loginContent">
+    <md-card title="Login" class="loginCard" >
+        <!--  Image-->
+        <img class="loginImage" src="../static/gaipaLogo512.png"/>
+
+        <!--  Title -->
+        <span class="login-title">Join the community!</span>
+        <div>
+        <form submit.delegate="registerUser()">
+              <!-- email -->
+              <!-- user input -->
+              <div class="field">
+                <label for="email" id="loginLabel">Email</label>
+                <input type="text" name="email" placeholder="email@yourdomain.com" value.bind="email" id="loginInputUser">
+              </div>
+              <!-- user Full Name -->
+              <div class="field">
+                <label for="fullname" id="loginLabel">Full Name</label>
+                <input type="text" name="fullname" placeholder="John Smith" value.bind="fullname" id="loginInputUser">
+              </div>
+
+              <button id="loginButton" md-button md-waves type='submit' type='submit'>Join</button>
+
+
+        <!-- <input type='text' name="email" value.bind="email" placeholder="email">
+        <input type='text' name="fullname" value.bind="fullname" placeholder="fullname"> -->
+
+        </form>
+      </div>
+    </md-card>
+  </div class="loginContent">
 </template>
