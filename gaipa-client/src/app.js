@@ -49,6 +49,7 @@ export class App {
       { route: 'login', name: 'login', moduleId: PLATFORM.moduleName('./login'), nav: false, title: 'Login' },
       { route: 'register', name: 'register', moduleId: PLATFORM.moduleName('./register'), nav: false, title: 'Register' },
       { route: 'discourse-sso', name: 'discourse-sso', moduleId: PLATFORM.moduleName('./discourse-sso'), nav: false, title: 'Discourse SSO' },
+      { route: 'profile', name: 'profile', moduleId: PLATFORM.moduleName('./profile'), nav: false, title: 'Profile' },
       { route: 'search', name: 'search', moduleId: PLATFORM.moduleName('./search'), nav: false, title: 'Search' }
     ]);
 

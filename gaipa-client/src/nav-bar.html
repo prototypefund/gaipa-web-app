@@ -7,7 +7,7 @@
         <a class="navBarLink" href="/" ><img class="navbarImage" src="../static/home.png"/></a>
       </li>
       <li class="navBarElement">
-        <a class="navBarLink" href="/community" ><img class="navbarImage" src="../static/community.png"/></a>
+        <a class="navBarLink" href="https://community.gaipa.org" ><img class="navbarImage" src="../static/community.png"/></a>
       </li>
 
 <!--
@@ -35,9 +35,7 @@
     <ul class="right">
       <li><a route-href="search"><img class="navbarImage" src="../static/search.png"/></a></li>
       <li><a route-href="login" if.bind="!user"><img class="navbarImage" src="../static/login.png"/></a></li>
-      <!-- <li if.bind="user">${user.sub}</li> -->
       <li if.bind="user"><a href="profile"><img class="navbarImage" src="../static/profile.png"/></a></li>
-      <li if.bind="user"><a click.delegate="logOut()"><img class="navbarImage" src="../static/logout.png"/></a></li>
 
     </ul>
   </md-navbar>

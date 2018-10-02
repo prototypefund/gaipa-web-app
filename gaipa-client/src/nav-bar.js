@@ -38,9 +38,4 @@ export class NavBar {
     this.userChanged.dispose();
   }
 
-  logOut() {
-    this.auth.logOut();
-    this.user = undefined;
-    this.router.navigateToRoute('login');
-  }
 }
