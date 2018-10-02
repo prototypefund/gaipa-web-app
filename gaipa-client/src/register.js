@@ -11,17 +11,20 @@ import {
   EventAggregator
 } from 'aurelia-event-aggregator';
 
+import { autoinject } from "aurelia-framework";
+import { MdToastService } from "aurelia-materialize-bridge";
 
-@inject(PloneRegistrationService, Router, EventAggregator)
+@inject(MdToastService,PloneRegistrationService, Router, EventAggregator)
 export class Register {
   email = '';
   fullname = '';
   username = '';
 
-  constructor(ploneRegistrationService, router, eventAggregator) {
+  constructor(toast,ploneRegistrationService, router, eventAggregator) {
     this.router = router;
     this.ploneRegistrationService = ploneRegistrationService;
     this.eventAggregator = eventAggregator;
+    this.toast = toast;
   }
 
   registerUser() {
@@ -30,6 +33,7 @@ export class Register {
       .then(response => response)
       .then(result => {
         if (result.isSuccess) {
+          this.toast.show("Registration succeed!. Please check your email for the activation link!", 4000, "green toastClass");
           this.eventAggregator.publish(
             'status-message', {
               message: `User "${this.email}" registered, please check you email for the activation link!`,
@@ -40,14 +44,17 @@ export class Register {
         }
       })
       .catch(error => {
-        debugger;
+        //debugger;
         let errorMsg = JSON.parse(error.response).error;
+        this.toast.show(errorMsg.message, 4000, "red toastClass");
         this.eventAggregator.publish(
           'status-message', {
             message: errorMsg.message,
             type: 'error'
           }
         );
+
+
       });
   }
 }

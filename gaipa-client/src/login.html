@@ -1,37 +1,40 @@
 <template>
 
-<div class="error" if.bind='error'>${ error }</div>
-
 <div class="loginContent">
 
    <md-card title="Login" class="loginCard" >
+
     <div class="error" if.bind='error'>${ error }</div>
+
     <img class="loginImage" src="../static/gaipaLogo512.png"/>
-    <span class="card-title">Login</span>
+
+    <span class="login-title">Login</span>
 
     <div>
       <form submit.delegate="logIn()">
-
+        <!-- user input -->
         <div class="field">
           <label for="login" id="loginLabel">User</label>
           <input type="text" name="login" placeholder="User" value.bind="login" id="loginInputUser">
         </div>
+        <!-- password input -->
         <div class="field">
           <label for="password" id="loginLabel" >Password</label>
           <input type="password" name="password" placeholder="Password" value.bind="password" id="loginInputPassword">
         </div>
-
+        <!--  login Button-->
         <div>
         <button id="loginButton" md-button md-waves type='submit'
             disabled.bind="!(login.length > 0 && password.length > 0)">Sign in</button>
         </div>
+
         <div id="noAccount">
         No account? Register now for gaipa community
         </div>
-
-      <a route-href="register">
+        <!-- go to register -->
+        <a route-href="register">
           <button id="registerButton" md-button md-waves>Create account</button>
-      </div></a>
+        </a>
       </form>
     </div>
 
