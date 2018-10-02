@@ -305,13 +305,28 @@ div#noAccount {
     padding-top: 20px;
 }
 
-
 button#registerButton {
     margin-top: 5px;
     width: 100%;
     background-color: #9bbe4c;
 }
+span.login-title {
+    margin-top: 20px;
+    padding-right: 10px;
+    font-size: xx-large;
+}
 
+.toast.toastClass {
+    padding: 40px;
+    font-size: larger;
+    font-weight: 600;
+}
+
+
+//This is just for production
+div#status-bar {
+    display: none;
+}
 
 // BREADCRUMB FOR SOLUTION ARTICLES
 
