@@ -1,15 +1,59 @@
 <template>
-    <h1>${heading}</h1>
-    <div class="row au-stagger">
-      <form>
-      </form>
+  <div class="SearchContainer">
+
+     <div class="SearchInput">
+
+       <span class="login-title">Search about...</span>
+
+
+       <md-card title="Search" class="searchCard" >
+
+         <div class="error" if.bind='error'>${ error }</div>
+
+         <form>
+
+            <md-input id="search" label="put here some text to search" value.bind="textValue">
+            </md-input>
+
+            <button id="searchButton" class="md-button waves-effect waves-light btn-large" type='submit'>
+            <i md-prefix class="material-icons right">search</i>Search
+            </button>
+
+        </form>
+
+       </md-card>
+
+     </div>
+
+     <div class="SearchResults">
+        <!-- Results -->
+        <span class="login-title">Results</span>
+
+        <ul class="collection">
+          <li class="collection-item" repeat.for='item of searchResultItems'>
+              <md-card class="resultCard" >
+              <span>${item.title}</span>
+              </md-card>
+          </li>
     </div>
-    <div class="row au-stagger">
-      <h2>Results</h2>
-      <ul class="collection">
-        <li class="collection-item" repeat.for='item of searchResultItems'>
-          ${item.parent.title} - ${item.title}
-        </li>
-      </ul>
-    </div>
+
+</div>
+<!--
+<h1>${heading}</h1>
+
+<div class="row au-stagger">
+  <form>
+    <input id="search" placeholder="Search">
+  </form>
+</div>
+<div class="row au-stagger">
+  <h2>Results</h2>
+  <ul class="collection">
+    <li class="collection-item" repeat.for='item of items'>
+      ${item.title}
+    </li>
+  </ul>
+</div>
+-->
+
 </template>

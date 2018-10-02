@@ -296,6 +296,35 @@ span.login-title {
     font-weight: 600;
 }
 
+// SearchInput
+.SearchInput .card-content {
+    background: #eeeeee;
+
+}
+
+
+label#inputLabel {
+    color: darkslategray;
+}
+
+
+
+button#searchButton {
+  color: white !important;
+    background-color: #f7a500 !important;
+    font-size: large;
+    height: 80px;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
 
 //This is just for production
 div#status-bar {
