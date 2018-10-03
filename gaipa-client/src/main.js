@@ -1,6 +1,7 @@
 import environment from './environment';
 import {PLATFORM} from 'aurelia-pal';
 import 'babel-polyfill';
+import 'url-search-params-polyfill';
 import * as Bluebird from 'bluebird';
 import 'materialize-css';
 
