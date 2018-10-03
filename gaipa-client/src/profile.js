@@ -5,17 +5,33 @@ import {
 import {
   inject
 } from 'aurelia-framework';
+import {ContentApi} from './api';
 
 
-@inject(AuthService)
+@inject(AuthService, ContentApi)
 export class Profile extends BaseView {
-  constructor(authService, ...rest) {
+  constructor(authService, contentApi, ...rest) {
     super(...rest);
     this.auth = authService;
+    this.contentApi = contentApi;
   }
 
   bind() {
     this.user = this.auth.getUser();
+    this.userData = this.getUserData();
+  }
+
+  getUserData() {
+    this.contentApi.getUserData()
+      .then(
+        userData => {
+          this.userData = userData;
+          console.log(userData);
+        }
+      )
+      .catch(error => {
+        this.error = error.message;
+      });
   }
 
   logOut() {

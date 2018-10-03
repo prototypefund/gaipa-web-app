@@ -10,7 +10,7 @@ export class App {
   accentColor = '#f7a500';
   errorColor = '#FF0000';
 
-  constructor(element, http, authService) {
+  constructor(element, httpFetch, authService) {
     this.element = element;
     this.element.style.setProperty('--primary-color', this.primaryColor);
     this.element.style.setProperty('--accent-color', this.accentColor);
@@ -18,7 +18,7 @@ export class App {
 
     this.auth = authService;
     const baseUrl = __GAIPA_API__;
-    http.configure(config => {
+    httpFetch.configure(config => {
       config
         .withBaseUrl(baseUrl)
         .withDefaults({
@@ -28,7 +28,7 @@ export class App {
             'X-Requested-With': 'Fetch'
           }
         })
-        .withInterceptor(this.auth.tokenInterceptor);
+        .withInterceptor(this.auth.tokenInterceptor());
     });
   }
 

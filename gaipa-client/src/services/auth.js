@@ -8,16 +8,16 @@ import {
 import { EventAggregator } from 'aurelia-event-aggregator';
 
 
-const TOKEN = 'ploneAuthToken';
+const TOKENNAME = 'ploneAuthToken';
 
 
 @inject(HttpClient, EventAggregator)
 export class AuthService {
-  constructor(http, eventAggregator) {
-    this.http = http;
+  constructor(httpClient, eventAggregator) {
+    this.httpClient = httpClient;
     const baseUrl = __GAIPA_API__;
     this.eventAggregator = eventAggregator;
-    http.configure(config => {
+    httpClient.configure(config => {
       config
         //.rejectErrorResponses()
         .withBaseUrl(baseUrl)
@@ -37,7 +37,7 @@ export class AuthService {
   }
 
   logIn(userName, password) {
-    return this.http.post(
+    return this.httpClient.post(
       '@login',
       JSON.stringify({
         login: userName,
@@ -48,7 +48,7 @@ export class AuthService {
       .then(tokenResult => {
         if (tokenResult.isSuccess) {
           window.localStorage.setItem(
-            TOKEN,
+            TOKENNAME,
             tokenResult.content.token
           );
         }
@@ -57,12 +57,17 @@ export class AuthService {
   }
 
   tokenInterceptor() {
-    let self = this;
+    console.log('#### #### try to add authorization header...');
+    let auth = this;
     return {
       request(request) {
-        let token = self.getToken();
+        console.log('try to add authorization header...');
+        let token = auth.getToken();
         if (token) {
+          console.log('add authorization header...');
           request.headers.append('authorization', `bearer ${token}`);
+        } else {
+          console.log('no token found');
         }
         return request;
       }
@@ -70,20 +75,25 @@ export class AuthService {
   }
 
   logOut() {
-    window.localStorage.removeItem(TOKEN);
+    console.log('logout');
+    window.localStorage.removeItem(TOKENNAME);
   }
 
   isLoggedIn() {
+    console.log('is logged in');
     let token = this.getToken();
     if (token) return true;
     return false;
   }
 
   getToken() {
-    return window.localStorage.getItem(TOKEN);
+    let token = window.localStorage.getItem(TOKENNAME);
+    console.log('get token from local storage: ' + token);
+    return token;
   }
 
   getUser() {
+    console.log('get user');
     let token = this.decodeToken();
     return token;
   }
@@ -97,5 +107,4 @@ export class AuthService {
       return null;
     }
   }
-
 }

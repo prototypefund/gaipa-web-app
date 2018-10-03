@@ -3,16 +3,18 @@ import { BaseView } from "./base";
 import {
   AuthService
 } from './services/auth';
+import {ContentApi} from './api';
 import {
   inject
 } from 'aurelia-framework';
 
 
-@inject(AuthService)
+@inject(AuthService, ContentApi)
 export class DiscourseSso extends BaseView {
-  constructor(authService, ...rest) {
+  constructor(authService, contentApi, ...rest) {
     super(...rest);
     this.auth = authService;
+    this.contentApi = contentApi;
     this.message = 'Hello world';
     this.secret = 'f#jfUQ^yw9a*X@3%#Kn5xF#0k';  // TODO, put this in the backend
     this.ssoDecoded = '';
@@ -35,6 +37,7 @@ export class DiscourseSso extends BaseView {
       let ssoParams = new URLSearchParams(this.ssoDecoded);
       let nonce = ssoParams.get('nonce');
       let returnSsoUrl = ssoParams.get('return_sso_url');
+
       let ssoNewParams = new URLSearchParams('');
       ssoNewParams.append('name', this.user.fullname);
       ssoNewParams.append('external_id', this.user.sub);
@@ -42,6 +45,28 @@ export class DiscourseSso extends BaseView {
       ssoNewParams.append('username', this.user.sub);
       ssoNewParams.append('require_activation', false);
       ssoNewParams.append('nonce', nonce);
+      this.contentApi.getUserData()
+        .then(
+          userData => {
+            if (userData.roles.includes('Manager')) {
+              ssoNewParams.append('admin', true);
+            }
+            if (userData.roles.includes('Site Administrator')) {
+              ssoNewParams.append('add_groups', 'admins,moderators');
+            }
+            if (userData.roles.includes('Reviewer')) {
+              ssoNewParams.append('add_groups', 'moderators');
+            }
+          }
+        )
+        .catch(error => {
+          this.error = error.message;
+        });
+      //let add_groups = [];
+      //if (this.userData.roles.includes('Reviewer')) {
+      //  ssoNewParams.append('add_groups', 'moderators');
+      //}
+      //ssoNewParams.append('add_groups', 'admins,moderators');
       this.ssoDecoded = ssoNewParams.toString();
       let ssoBase64 = window.btoa(this.ssoDecoded);
       let returnParamsString = encodeURI(ssoBase64);
@@ -53,4 +78,5 @@ export class DiscourseSso extends BaseView {
       window.location = returnUrl;
     }
   }
+
 }

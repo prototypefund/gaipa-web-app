@@ -9,5 +9,4 @@ export class BaseView {
     this.router = router;
     this.eventAggregator = eventAggregator;
   }
-
 }
