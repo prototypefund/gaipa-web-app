@@ -317,7 +317,11 @@ button#searchButton {
     width: 100%;
 }
 
+//profile
 
+.profileCard .card-content {
+    background-color: white;
+}
 
 
 
@@ -330,6 +334,20 @@ button#searchButton {
 div#status-bar {
     display: none;
 }
+//Articles videos
+
+article span p iframe {
+    width: 100%;
+}
+
+#content-core p {
+    text-align: justify;
+}
+
+#content-core h3 {
+    font-size: x-large;
+}
+
 
 // BREADCRUMB FOR SOLUTION ARTICLES
 
