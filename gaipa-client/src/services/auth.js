@@ -95,8 +95,6 @@ export class AuthService {
         let token = auth.getToken();
         if (token) {
           request.headers.append('authorization', `bearer ${token}`);
-        } else {
-          console.log('no token found!!!');
         }
         return request;
       }

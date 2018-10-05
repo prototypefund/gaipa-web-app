@@ -36,22 +36,7 @@ export class Download extends BaseView {
             let path = itemUrl;
             path = path.replace(this.baseUrl, '');
             self.promisses.push(this.downloadItem(path));
-            return true;
           }
-        }
-      ).then(
-        result => {
-          Promise.all(self.promisses).then(values => {
-            self.eventAggregator.publish(
-              'status-message', {
-                message: `Dowload of ${self.count} elements complete.`,
-                type: 'info'
-              }
-            );
-            self.loadingProgress = 0;
-          }, reason => {
-            console.log("Error with promisses: " + reason);
-          });
         }
       )
       .catch(error => {
@@ -59,6 +44,18 @@ export class Download extends BaseView {
           'status-message', {message: 'Download error: ' + error.message, type: 'error'}
         );
       });
+
+    Promise.all(this.promisses).then(values => {
+      self.eventAggregator.publish(
+        'status-message', {
+          message: `Dowload of ${this.count} elements complete.`,
+          type: 'info'
+        }
+      );
+      self.loadingProgress = 0;
+    }, reason => {
+      console.log("Error with promisses: " + reason);
+    });
   }
 
   downloadItem(url) {
