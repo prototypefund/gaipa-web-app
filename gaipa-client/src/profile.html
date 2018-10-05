@@ -1,8 +1,8 @@
 <template>
   <h1>Profile</h1>
-  <div>${user.fullname}</div>
-  <div>${user.sub}</div>
-  <div>Roles: ${userData.roles}</div>
+  <div if.bind='user'>${user.fullname}</div>
+  <div if.bind='user'>${user.sub}</div>
+  <div if.bind='userData'>Roles: ${userData.roles}</div>
   <div if.bind='!user'>Please login, to view your profile!</div>
   <a route-href="login" if.bind="!user">login</a>
   <a click.delegate="logOut()" if.bind="user">logout</a>

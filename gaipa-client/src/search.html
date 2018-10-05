@@ -2,14 +2,13 @@
     <h1>${heading}</h1>
     <div class="row au-stagger">
       <form>
-        <input id="search" placeholder="Search">
       </form>
     </div>
     <div class="row au-stagger">
       <h2>Results</h2>
       <ul class="collection">
-        <li class="collection-item" repeat.for='item of items'>
-          ${item.title}
+        <li class="collection-item" repeat.for='item of searchResultItems'>
+          ${item.parent.title} - ${item.title}
         </li>
       </ul>
     </div>

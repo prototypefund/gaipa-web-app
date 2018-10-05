@@ -369,6 +369,7 @@ md-collection-item.au-target.collection-item {
   font-weight: 600;
 }
 
+
 @media only screen and (max-width: 600px) {
   .chapter #content-core {
     img{ max-width: 100%; height: auto; }
@@ -383,7 +384,47 @@ md-collection-item.au-target.collection-item {
     margin: .5em 0;
   }
 
+}
 
 
+// CSS animations:
 
+.main-container {
+  padding: 20px;
+  list-style: none;
+}
+
+.main-container > .au-enter {
+  opacity: 0!important;
+}
+
+.main-container > .au-enter-active {
+  -webkit-animation: fadeIn 2s;
+  animation: fadeIn 2s;
+}
+
+.main-container > .au-leave-active {
+  -webkit-animation: fadeOut 2s;
+  animation: fadeOut 2s;
+}
+
+/* CSS3-Animations */
+@-webkit-keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-webkit-keyframes fadeOut {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes fadeOut {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
 }

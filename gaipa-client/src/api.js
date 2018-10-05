@@ -25,16 +25,27 @@ export class ContentApi {
         })
         .withInterceptor({
           request(request) {
-            console.log(`##### Requesting ${request.method} ${request.url}`);
+            console.log(`Requesting ${request.method} ${request.url}`);
+            this.loading = true;
             return request;
           },
           response(response) {
             console.log(`Received ${response.status} ${response.url}`);
+            this.loading = false;
             return response;
           }
         })
         .withInterceptor(this.authService.tokenInterceptor());
     });
+  }
+
+  get(path) {
+    return this.httpFetch.fetch('/app' + path)
+      .then(response => response.json())
+      .then(card => {
+        return card;
+      })
+    ;
   }
 
   getCard(path) {
@@ -108,9 +119,8 @@ export class ContentApi {
   //  //;
   //}
 
-  getUserData() {
-    console.log(`get user data for: ${this.authService.getUser().sub}`);
-    return this.httpFetch.fetch(`/@users/${this.authService.getUser().sub}`)
+  getUserData(user) {
+    return this.httpFetch.fetch(`/@users/${user.sub}`)
       .then(response => response.json())
       .then(userData => {
         return userData;

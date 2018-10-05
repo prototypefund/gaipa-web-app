@@ -9,6 +9,7 @@ export class App {
   primaryColor = '#9b924c';
   accentColor = '#f7a500';
   errorColor = '#FF0000';
+  loading = false;
 
   constructor(element, httpFetch, authService) {
     this.element = element;
@@ -50,7 +51,8 @@ export class App {
       { route: 'register', name: 'register', moduleId: PLATFORM.moduleName('./register'), nav: false, title: 'Register' },
       { route: 'discourse-sso', name: 'discourse-sso', moduleId: PLATFORM.moduleName('./discourse-sso'), nav: false, title: 'Discourse SSO' },
       { route: 'profile', name: 'profile', moduleId: PLATFORM.moduleName('./profile'), nav: false, title: 'Profile' },
-      { route: 'search', name: 'search', moduleId: PLATFORM.moduleName('./search'), nav: false, title: 'Search' }
+      { route: 'search', name: 'search', moduleId: PLATFORM.moduleName('./search'), nav: false, title: 'Search' },
+      { route: 'download', name: 'download', moduleId: PLATFORM.moduleName('./download'), nav: false, title: 'Download' }
     ]);
 
     this.router = router;

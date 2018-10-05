@@ -1,31 +1,47 @@
 import { inject } from "aurelia-framework";
-import {Router} from 'aurelia-router';
 import {ContentApi} from './api';
+import { BaseView } from './base';
 
 
-@inject(ContentApi, Router)
-export class Search {
+@inject(ContentApi)
+export class Search extends BaseView {
   heading = 'Search';
-  constructor(contentApi, router) {
+  availablePortalTypes = [
+    {id: 'Chapter', name: 'Chapter'},
+    {id: 'Solution Service', name: 'Service'},
+    {id: 'NavAssistantCard', name: 'Nav Assistant Card'}
+  ];
+
+  constructor(contentApi, ...rest) {
+    super(...rest);
     this.api = contentApi;
-    this.router = router;
-    this.baseUrl = __GAIPA_API__ + '/app';
-    this.items = [];
+    this.searchableText = '';
+    this.searchResultItems = [];
+    this.portalTypes = [];
   }
 
   bind() {
-    this.items = this.search();
   }
 
-  search(searchableText, types) {
+  search() {
+    //let self = this;
     //let path = '/@search?sort_on=path,portal_type=SolutionArticle';
-    let path = '/@search?portal_type=SolutionArticle&sort_on=path&metadata_fields=modified';
-    this.api.search(path)
+    let queryParams = new URLSearchParams();
+    if (this.portalTypes.length) {
+      queryParams.append('portal_type', this.portalTypes);
+    }
+    queryParams.append('sort_on', 'sortable_title');
+    queryParams.append('metadata_fields', 'modified');
+    this.api.search('/@search?' + queryParams.toString())
       .then(
-        items => this.items = items
+        searchResult => {
+          self.searchResultItems = searchResult.items;
+        }
       )
       .catch(error => {
-        this.error = error.message;
+        this.eventAggregator.publish(
+          'status-message', {message: 'Search error: ' + error.message, type: 'error'}
+        );
       });
   }
 

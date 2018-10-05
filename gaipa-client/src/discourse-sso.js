@@ -15,7 +15,6 @@ export class DiscourseSso extends BaseView {
     super(...rest);
     this.auth = authService;
     this.contentApi = contentApi;
-    this.message = 'Hello world';
     this.secret = 'f#jfUQ^yw9a*X@3%#Kn5xF#0k';  // TODO, put this in the backend
     this.ssoDecoded = '';
   }
@@ -27,12 +26,16 @@ export class DiscourseSso extends BaseView {
     let ssoHash = sha256.hmac(this.secret, sso);
 
     if (ssoHash !== sig) {
-      console.log('HMAC signature invalid!');
       this.eventAggregator.publish(
         'status-message', {message: 'HMAC signature invalid!', type: 'error'}
       );
     } else {
       this.user = this.auth.getUser();
+      console.log('user check');
+      if (!this.user) {
+        console.log('>>>> route to login');
+        this.router.navigateToRoute('login');
+      }
       this.ssoDecoded = window.atob(sso);
       let ssoParams = new URLSearchParams(this.ssoDecoded);
       let nonce = ssoParams.get('nonce');
@@ -45,37 +48,37 @@ export class DiscourseSso extends BaseView {
       ssoNewParams.append('username', this.user.sub);
       ssoNewParams.append('require_activation', false);
       ssoNewParams.append('nonce', nonce);
-      this.contentApi.getUserData()
-        .then(
-          userData => {
-            if (userData.roles.includes('Manager')) {
-              ssoNewParams.append('admin', true);
-            }
-            if (userData.roles.includes('Site Administrator')) {
-              ssoNewParams.append('add_groups', 'admins,moderators');
-            }
-            if (userData.roles.includes('Reviewer')) {
-              ssoNewParams.append('add_groups', 'moderators');
-            }
-          }
-        )
-        .catch(error => {
-          this.error = error.message;
-        });
-      //let add_groups = [];
-      //if (this.userData.roles.includes('Reviewer')) {
-      //  ssoNewParams.append('add_groups', 'moderators');
-      //}
-      //ssoNewParams.append('add_groups', 'admins,moderators');
-      this.ssoDecoded = ssoNewParams.toString();
-      let ssoBase64 = window.btoa(this.ssoDecoded);
-      let returnParamsString = encodeURI(ssoBase64);
-      let newSig = sha256.hmac(this.secret, returnParamsString);
-      let returnUrl = `${returnSsoUrl}?sso=${returnParamsString}&sig=${newSig}`;
+      if (this.user) {
+        this.contentApi.getUserData(this.user)
+          .then(
+            userData => {
+              if (userData.roles.includes('Manager')) {
+                ssoNewParams.append('admin', true);
+              }
+              if (userData.roles.includes('Site Administrator')) {
+                ssoNewParams.append('add_groups', 'admins,moderators');
+              }
+              if (userData.roles.includes('Reviewer')) {
+                ssoNewParams.append('moderator', true);
+                ssoNewParams.append('add_groups', 'moderators');
+              }
+              console.log(ssoNewParams.toString());
+              this.ssoDecoded = ssoNewParams.toString();
+              let ssoBase64 = window.btoa(this.ssoDecoded);
+              let returnParamsString = encodeURI(ssoBase64);
+              let newSig = sha256.hmac(this.secret, returnParamsString);
+              let returnUrl = `${returnSsoUrl}?sso=${returnParamsString}&sig=${newSig}`;
 
-      // redirect to community.gaipa.org SSO
-      console.log('redirect to:' + returnUrl);
-      window.location = returnUrl;
+              // redirect to community.gaipa.org SSO
+              console.log('redirect to:' + returnUrl);
+              window.location = returnUrl;
+            }
+          )
+          .catch(error => {
+            console.log('Error in getUserData!');
+            //console.log(error);
+          });
+      }
     }
   }
 

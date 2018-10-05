@@ -18,11 +18,11 @@ export class Profile extends BaseView {
 
   bind() {
     this.user = this.auth.getUser();
-    this.userData = this.getUserData();
+    this.userData = this.getUserData(this.user);
   }
 
-  getUserData() {
-    this.contentApi.getUserData()
+  getUserData(user) {
+    this.contentApi.getUserData(user)
       .then(
         userData => {
           this.userData = userData;
