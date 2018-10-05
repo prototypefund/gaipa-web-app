@@ -3,7 +3,7 @@
 
 
 
-<<div class="profileCard card small">
+<div class="profileCard card small" if.bind="user">
         <div class="card-image">
           <img src="../static/userBackground.png">
           <span class="card-title">${user.fullname}</span>
@@ -15,7 +15,7 @@
 </div>
 
 <div>
-<ul class="collection">
+<ul class="collection" if.bind="user">
   <li class="collection-item">Full name: <span class="badge" >${user.fullname}</span></li>
   <li class="collection-item">userName: <span class="badge" >${user.sub}</span></li>
   <li class="collection-item">Date of birthday: <span class="badge" >18-11-81</span></li>
@@ -26,13 +26,8 @@
                                     </li>
 
 </ul>
-</div> -->
+</div>
 
-  <h1>Profile</h1>
-  <div if.bind='user'>${user.fullname}</div>
-  <div if.bind='user'>${user.sub}</div>
-  <div if.bind='userData'>Roles: ${userData.roles}</div>
-  <div if.bind='!user'>Please login, to view your profile!</div>
-  <a route-href="login" if.bind="!user">login</a>
-  <a click.delegate="logOut()" if.bind="user"><button id="logoutButton" md-button small md-waves type='submit'>logout</button></a>
+<a click.delegate="logOut()" if.bind="user"><button id="logoutButton" md-button small md-waves type='submit'>logout</button></a>
+<div if.bind='!user'>Please login, to view your profile!</div>
 </template>
