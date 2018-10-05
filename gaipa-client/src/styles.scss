@@ -334,10 +334,13 @@ button#searchButton {
 div#status-bar {
     display: none;
 }
-//Articles videos
-
+//Articles
+article h1 {
+  font-size: xx-large;
+}
+//YouTube iframes
 article span p iframe {
-    width: 100%;
+    max-width: 100%;
 }
 
 #content-core p {
