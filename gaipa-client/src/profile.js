@@ -37,6 +37,9 @@ export class Profile extends BaseView {
   logOut() {
     this.auth.logOut();
     this.user = undefined;
+    this.eventAggregator.publish(
+      'user-changed', {message: 'logged out'}
+    );
     this.router.navigateToRoute('login');
   }
 }

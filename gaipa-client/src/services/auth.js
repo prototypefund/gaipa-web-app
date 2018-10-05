@@ -102,6 +102,7 @@ export class AuthService {
   }
 
   logOut() {
+
     window.localStorage.removeItem(TOKENNAME);
   }
 
