@@ -1,7 +1,7 @@
 <template>
 
     <!-- Header -->
-    <img if.bind="card.useHeaderImage" class="cardHeaderImage" src=${card.image_caption}/>
+    <img if.bind="card.image.download" class="cardHeaderImage" src="${card.image.download}"/>
     <span class="cardHeaderTitle">${card.title}</span>
     <br/>
     <span class="cardHeaderDescription" >${card.description}</span>

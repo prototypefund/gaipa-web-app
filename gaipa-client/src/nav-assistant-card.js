@@ -34,7 +34,7 @@ export class NavAssistantCard {
         card => {
           this.card = card;
           this.relatedArticles = card['@components']['related-articles'].items;
-          this.card.useHeaderImage=card.image_caption.length>1;
+          
         }
 
       )
