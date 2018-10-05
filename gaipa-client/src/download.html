@@ -1,6 +1,32 @@
 <template>
-  <h1>Download content</h1>
+  <div class="downloadContent">
+
+     <md-card title="Download" class="downloadCard" >
+
+      <div class="error" if.bind='error'>${ error }</div>
+
+      <span class="download-title">Download</span>
+      <hr/>
+      <br/>
+      <p>Click here if you want to have access to all the information when you are offline</p>
+      <div>
+        <br/>
+           <a route-href="download">
+            <button id="downloadButton" md-button md-waves click.delegate='downloadContent()'>Download all content</button>
+          </a>
+          <div if.bind="loadingProgress"><md-progress value.bind="loadingProgress"></md-progress></div>
+
+      </div>
+
+    </md-card>
+
+  </div class="loginContent">
+
+
+
+  <!-- <h1>Download content</h1>
   <p>You can download all content for offline usage.</p>
   <button click.delegate='downloadContent()'>download all content</button>
-  <div if.bind="loadingProgress"><md-progress value.bind="loadingProgress"></md-progress></div>
+  <div if.bind="loadingProgress"><md-progress value.bind="loadingProgress"></md-progress></div> -->
+
 </template>

@@ -362,11 +362,29 @@ span.login-title {
     font-weight: 600;
 }
 
+//Download Card
+span.download-title {
+    margin-top: 20px;
+    padding-right: 10px;
+    font-size: xx-large;
+}
+
+.downloadCard .card-content {
+    background-color: white;
+}
+
+button#downloadButton {
+    background-color: darkorange;
+    width: 100%;
+}
+
 
 //This is just for production
-div#status-bar {
-    display: none;
-}
+// div#status-bar {
+//     display: none;
+// }
+
+
 //Articles
 article h1 {
   font-size: xx-large;
@@ -496,5 +514,3 @@ md-collection-item.au-target.collection-item {
   }
 
 }
-
-
