@@ -8,14 +8,19 @@
       <span class="download-title">Download</span>
       <hr/>
       <br/>
-      <p>Click here if you want to have access to all the information when you are offline</p>
+      <p>Click on "Download content", if you want to have access to all the information when you are offline.</p>
       <div>
-        <br/>
-           <a route-href="download">
-            <button id="downloadButton" md-button md-waves waves-effect waves-light btn-large click.delegate='downloadContent()'>Download all content</button>
-          </a>
-          <div if.bind="loadingProgress"><md-progress value.bind="loadingProgress"></md-progress></div>
-
+        <div class="progressWrapper">
+          <md-progress
+           if.bind="loadingProgress"
+           class="determinate"
+           md-value.bind="loadingProgress"></md-progress>
+        </div>
+        <a route-href="download">
+          <button id="downloadButton"
+            class="md-button md-waves waves-effect waves-light btn-large"
+            click.delegate='downloadContent()'>Download content</button>
+        </a>
       </div>
 
     </md-card>

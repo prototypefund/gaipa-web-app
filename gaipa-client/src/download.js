@@ -11,64 +11,47 @@ export class Download extends BaseView {
     this.baseUrl = __GAIPA_API__ + '/app';
     this.count = undefined;
     this.current = undefined;
-    this.promisses = [];
-  }
-
-  bind() {
+    this.downloads = [];
     this.loadingProgress = 0;
   }
 
   downloadContent() {
-    let self = this;
     let queryParams = new URLSearchParams();
     queryParams.append('b_size', 5000);
     queryParams.append('sort_on', 'sortable_title');
     queryParams.append('metadata_fields', 'modified');
     this.contentApi.search('/@search?' + queryParams.toString())
       .then(
-        searchResult => {
+        async searchResult => {
           let searchResultItems = searchResult.items;
-          self.count = searchResultItems.length;
-          self.current = 1;
+          this.count = searchResultItems.length;
+          this.current = 0;
           for (var searchItem of searchResultItems) {
             let itemUrl = searchItem['@id'];
-            self.loadingProgress = Math.floor((100 * self.current) / self.count);
             let path = itemUrl;
             path = path.replace(this.baseUrl, '');
-            self.promisses.push(this.downloadItem(path));
+            try {
+              let downloadResult = await this.contentApi.get(path);
+              this.downloads.push(downloadResult.content || '');
+              this.current = this.current + 1;
+              this.loadingProgress = Math.floor((100 * this.current) / this.count);
+              console.log(this.loadingProgress);
+            } catch (error) {
+              console.log(error);
+            }
           }
+          this.eventAggregator.publish(
+            'status-message', {
+              message: `Dowload of ${this.count} elements complete.`,
+              type: 'info'
+            }
+          );
         }
       )
       .catch(error => {
         this.eventAggregator.publish(
           'status-message', {message: 'Download error: ' + error.message, type: 'error'}
         );
-      });
-
-    Promise.all(this.promisses).then(values => {
-      self.eventAggregator.publish(
-        'status-message', {
-          message: `Dowload of ${this.count} elements complete.`,
-          type: 'info'
-        }
-      );
-      self.loadingProgress = 0;
-    }, reason => {
-      console.log("Error with promisses: " + reason);
-    });
-  }
-
-  downloadItem(url) {
-    let self = this;
-    this.contentApi.get(url)
-      .then(
-        element => {
-          console.log(url);
-          self.current = self.current + 1;
-        }
-      )
-      .catch(error => {
-        this.error = error.message;
       });
   }
 }

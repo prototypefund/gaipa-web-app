@@ -498,6 +498,15 @@ md-collection-item.au-target.collection-item {
   font-weight: 600;
 }
 
+.progressWrapper {
+  height: 30px;
+  padding: 1em 0;
+}
+
+.progress{
+  height: 5px;
+  margin: 0;
+}
 
 @media only screen and (max-width: 600px) {
   .chapter #content-core {
