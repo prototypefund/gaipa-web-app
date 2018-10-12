@@ -56,7 +56,7 @@ export class DiscourseSso extends BaseView {
                 ssoNewParams.append('admin', true);
               }
               if (userData.roles.includes('Site Administrator')) {
-                ssoNewParams.append('add_groups', 'admins,moderators');
+                ssoNewParams.append('add_groups', 'admins');
               }
               if (userData.roles.includes('Reviewer')) {
                 ssoNewParams.append('moderator', true);
