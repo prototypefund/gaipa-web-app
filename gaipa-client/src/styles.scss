@@ -373,9 +373,11 @@ span.download-title {
     background-color: #eeeeee;
 }
 
-button#downloadButton {
+button#downloadButton,
+button#downloadButtonAgain{
     background-color: darkorange;
     width: 100%;
+    margin-top: 1.5em;
 }
 
 
@@ -499,8 +501,8 @@ md-collection-item.au-target.collection-item {
 }
 
 .progressWrapper {
-  height: 30px;
-  padding: 1em 0;
+  //height: 30px;
+  //padding: 1em 0;
 }
 
 .progress{

@@ -10,16 +10,38 @@
       <br/>
       <p>Click on "Download content", if you want to have access to all the information when you are offline.</p>
       <div>
+        <h3 if.bind="loadingProgress.cards">Navigation Cards</h3>
         <div class="progressWrapper">
           <md-progress
-           if.bind="loadingProgress"
            class="determinate"
-           md-value.bind="loadingProgress"></md-progress>
+           if.bind="loadingProgress.cards"
+           md-value.bind="loadingProgress.cards"></md-progress>
+        </div>
+        <h3 if.bind="loadingProgress.articles">Articles</h3>
+        <div class="progressWrapper">
+          <md-progress
+           class="determinate"
+           if.bind="loadingProgress.articles"
+           md-value.bind="loadingProgress.articles"></md-progress>
+        </div>
+        <h3 if.bind="loadingProgress.services">Services</h3>
+        <div class="progressWrapper">
+          <md-progress
+           class="determinate"
+           if.bind="loadingProgress.services"
+           md-value.bind="loadingProgress.services"></md-progress>
         </div>
         <a route-href="download">
           <button id="downloadButton"
             class="md-button md-waves waves-effect waves-light btn-large"
+            if.bind="!downloadDone"
             click.delegate='downloadContent()'>Download content</button>
+        </a>
+        <a route-href="download">
+          <button id="downloadButtonAgain"
+            class="md-button md-waves waves-effect waves-light btn-large"
+            if.bind="downloadDone"
+            click.delegate='downloadContent()'>Download content again</button>
         </a>
       </div>
 
